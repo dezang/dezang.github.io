@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="서브라임은 개발자를 위한 잘 만들어진 에디터다. 서브라임으로 프로젝트 관리하는 방법과 Package Control을 포함한 몇 가지 유용한 플러그인들을 소개하고, 그 사용법을 알아본다.">
+<meta name="keywords" content="sublime">
+<meta property="og:type" content="article">
+<meta property="og:title" content="서브라임 시작하기">
+<meta property="og:url" content="http://dezang.github.io/gs-sublime-text/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="서브라임은 개발자를 위한 잘 만들어진 에디터다. 서브라임으로 프로젝트 관리하는 방법과 Package Control을 포함한 몇 가지 유용한 플러그인들을 소개하고, 그 사용법을 알아본다.">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://take.ms/G5Jp5">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="서브라임 시작하기">
+<meta name="twitter:description" content="서브라임은 개발자를 위한 잘 만들어진 에디터다. 서브라임으로 프로젝트 관리하는 방법과 Package Control을 포함한 몇 가지 유용한 플러그인들을 소개하고, 그 사용법을 알아본다.">
+<meta name="twitter:image" content="http://take.ms/G5Jp5">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>서브라임 시작하기</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/how-to-list-of-groups-on-ubuntu/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/generating-an-ssh-key/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/gs-sublime-text/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/gs-sublime-text/&text=서브라임 시작하기"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/gs-sublime-text/&is_video=false&description=서브라임 시작하기"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=서브라임 시작하기&body=Check out this article: http://dezang.github.io/gs-sublime-text/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/gs-sublime-text/&name=서브라임 시작하기&description=&lt;p&gt;서브라임은 개발자를 위한 잘 만들어진 에디터다. 서브라임으로 프로젝트 관리하는 방법과 &lt;code&gt;Package Control&lt;/code&gt;을 포함한 몇 가지 유용한 플러그인들을 소개하고, 그 사용법을 알아본다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#프로젝트-관리"><span class="toc-number">1.</span> <span class="toc-text">프로젝트 관리</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#플러그인"><span class="toc-number">2.</span> <span class="toc-text">플러그인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Package-Control-설치"><span class="toc-number">2.1.</span> <span class="toc-text">Package Control 설치</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sublime-Text-3의-경우"><span class="toc-number">2.1.1.</span> <span class="toc-text">Sublime Text 3의 경우</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sublime-Text-2의-경우"><span class="toc-number">2.1.2.</span> <span class="toc-text">Sublime Text 2의 경우</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-Requester"><span class="toc-number">2.2.</span> <span class="toc-text">Http Requester</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용방법"><span class="toc-number">2.2.1.</span> <span class="toc-text">사용방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PlainTasks"><span class="toc-number">2.3.</span> <span class="toc-text">PlainTasks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용방법-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">사용방법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#문제점"><span class="toc-number">2.3.2.</span> <span class="toc-text">문제점</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        서브라임 시작하기
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-15T04:07:05.926Z" itemprop="datePublished">2018-10-15</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/sublime/">sublime</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>서브라임은 개발자를 위한 잘 만들어진 에디터다. 서브라임으로 프로젝트 관리하는 방법과 <code>Package Control</code>을 포함한 몇 가지 유용한 플러그인들을 소개하고, 그 사용법을 알아본다.</p>
+<a id="more"></a>
+<h2 id="프로젝트-관리"><a href="#프로젝트-관리" class="headerlink" title="프로젝트 관리"></a>프로젝트 관리</h2><p>먼저 프로젝트 폴더를 서브라임으로 연다. 서브라임으로 프로젝트 폴더를 열었으면, 메뉴에서 <code>Project -&gt; Save Project As...</code>를 눌러 현재 프로젝트를 저장한다.</p>
+<p>같은 폴더에 원하는 프로젝트 이름을 입력하여 확장자가 <code>sublime-project</code>인 파일을 만든다. 그러면 두 가지 새로운 파일이 생긴다. <code>sublime-project</code>와 <code>sublime-workspace</code> 파일이다. 생성된 프로젝트 파일을 열어보면 다음과 같이 작성되어 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;folders&quot;:</span><br><span class="line">  [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;.&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>path 에 경로를 바꾸면 바뀐 경로대로 사이드바에 파일들이 즉시 업데이트 된다. 경로는 프로젝트 파일(<code>example.sublime-project</code>)의 위치를 중심으로 상대 경로로 입력해도 되고, 절대 경로로 입력해도 된다. 프로젝트 폴더를 다른 위치로 옮길 경우 상관없도록 하기 위해서 프로젝트 파일을 프로젝트 폴더 최상위에 두고 상대경로를 입력하여 설정하도록 한다.</p>
+<p>경로는 복수로 입력가능하다. 등록한 경로의 수만큼 폴더가 최상위로 등록된다. 아래는 현재 나의 대장넷 프로젝트 파일의 설정이다. 포스트에 더 접근하기 쉽도록 따로 빼놓았다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;folders&quot;:</span><br><span class="line">  [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;.&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;src/documents/posts&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이렇게 설정해놓으면 나중에 프로젝트를 닫더라도 <code>Project -&gt; Open Recent</code>에서 손쉽게 다시 설정한대로 열어서 작업할 수 있다. 여러 개의 프로젝트를 수행하다보면 프로젝트간의 이동이 중요하다. <code>control+command+P</code> 단축키로 프로젝트간의 이동을 빠르게 할 수 있다.</p>
+<p>나중에 프로젝트 파일을 변경하고 싶다면 프로젝트 파일을 찾아 열어서 수정할 수도 있지만 커맨드 팔레트를 이용하면 더 쉽다. 커맨드 팔레트를 열고 <code>project</code>라고 입력하면 몇 가지 기능들이 보여지는데 <code>Edit</code>를 누르면 바로 프로젝트 파일이 열린다. 그 밖에도 <code>Add Folder</code>는 프로젝트 파일에 손쉽게 경로를 추가하는 좋은 방법이다.</p>
+<p>프로젝트를 수행하다보면 프로젝트가 실행되기 위해서는 필요하지만 내가 굳이 변경하거나 열어보지 않아도 되는 파일이나 폴더들이 존재한다. 이러한 파일/폴더를 서브라임 작업환경에서 보이지 않게 설정이 가능하다.</p>
+<p>먼저 <strong>특정 확장자</strong> 를 가진 파일들을 베제시켜 보도록 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;folders&quot;:</span><br><span class="line">  [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;.&quot;,</span><br><span class="line">      &quot;file_exclude_patterns&quot;: [&quot;*.sublime-project&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>file_exclude_patterns</code>를 입력하고 <code>[]</code> 안에 배제할 확장자를 넣어주면된다. 콤마를 사용하여 여러 개를 입력해도 좋다. 이와 마찬가지 방법으로 <code>folder_exclude_patterns</code>를 사용하여 폴더를 배제시킬 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;folders&quot;:</span><br><span class="line">  [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;.&quot;,</span><br><span class="line">      &quot;file_exclude_patterns&quot;: [&quot;*.sublime-project&quot;],</span><br><span class="line">      &quot;folder_exclude_patterns&quot;: [&quot;out&quot;,&quot;node_modules&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>마지막으로 <code>setting</code>을 프로젝트에 한하여 적용하는 방법을 알아보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;folders&quot;:</span><br><span class="line">  [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;.&quot;,</span><br><span class="line">      &quot;file_exclude_patterns&quot;: [&quot;*.sublime-project&quot;],</span><br><span class="line">      &quot;folder_exclude_patterns&quot;: [&quot;out&quot;,&quot;node_modules&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;follow_symlinks&quot;: true,</span><br><span class="line">      &quot;path&quot;: &quot;src/documents/posts&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;settings&quot;:</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;tab_size&quot;: 2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위와 같이 설정하면 기본 세팅을 무시하고 해당 프로젝트 안에서는 설정된 세팅값으로 세팅된다. 프로젝트에 맞는 설정값을 따로 부여할 수 있는 것이다. 변경할 수 있는 세팅값들은 메뉴에 <code>Sublime Text -&gt; Preferences -&gt; Settings-Default</code>에서 확인 할 수 있다.</p>
+<h2 id="플러그인"><a href="#플러그인" class="headerlink" title="플러그인"></a>플러그인</h2><p>서브라임은 강력한 텍스트 에디터다. 깔끔한 인터페이스와 강력한 기능에 매료된 많은 개발자들이 <code>TextMate</code>에서 서브라임으로 갈아탔다. 기본적인 기능만으로도 사용하는 것에는 문제가 없지만, 기능을 더욱 강력하게 해주는 <strong>패키지</strong> 가 없었다면 서브라임이 이렇게 인기가 있었을까? 그리고 <code>Package Control</code>은 패키지를 쉽게 설치/제거 할 수 있도록 하는 <strong>Must have 패키지</strong> 이다. 여기서는 간단하게 <a href="">Package Control</a>을 설치하는 법을 설명하도록 한다.</p>
+<h3 id="Package-Control-설치"><a href="#Package-Control-설치" class="headerlink" title="Package Control 설치"></a>Package Control 설치</h3><p>메뉴에서 <code>View &gt; Show Console</code> 을 선택하여 콘솔창을 연다. 콘솔창이 열리면, 자신의 서브라임 버전에 맞는 코드를 복사하여 붙여넣는다.<br>아래 코드는 시간이 지남에 따라 변경될 수 있으니 <a href="https://packagecontrol.io/installation" target="_blank" rel="noopener">서브라임 공식 홈페이지</a> 에서 확인하는게 좋다.</p>
+<h4 id="Sublime-Text-3의-경우"><a href="#Sublime-Text-3의-경우" class="headerlink" title="Sublime Text 3의 경우"></a>Sublime Text 3의 경우</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os,hashlib; h = &apos;2915d1851351e5ee549c20394736b442&apos; + &apos;8bc59f460fa1548d1514676163dafc88&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &apos;wb&apos; ).write(by)</span><br></pre></td></tr></table></figure>
+<h4 id="Sublime-Text-2의-경우"><a href="#Sublime-Text-2의-경우" class="headerlink" title="Sublime Text 2의 경우"></a>Sublime Text 2의 경우</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib2,os,hashlib; h = &apos;2915d1851351e5ee549c20394736b442&apos; + &apos;8bc59f460fa1548d1514676163dafc88&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), &apos;wb&apos; ).write(by) if dh == h else None; print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h) if dh != h else &apos;Please restart Sublime Text to finish installation&apos;)</span><br></pre></td></tr></table></figure>
+<p>패키지 컨트롤 설치 참 쉽다. 더 자세한 사항이 궁금하다면 <a href="https://sublime.wbond.net/" target="_blank" rel="noopener">Package Control 공식홈페이지</a>에서 확인하시길.</p>
+<h3 id="Http-Requester"><a href="#Http-Requester" class="headerlink" title="Http Requester"></a>Http Requester</h3><h4 id="사용방법"><a href="#사용방법" class="headerlink" title="사용방법"></a>사용방법</h4><p>URL을 선택하고 <code>command + option + R</code>을 누르면 해당 리퀘스트 정보를 보여준다.</p>
+<h3 id="PlainTasks"><a href="#PlainTasks" class="headerlink" title="PlainTasks"></a>PlainTasks</h3><p><span class="label label-success">Github</span> <a href="https://github.com/aziz/PlainTasks" target="_blank" rel="noopener">https://github.com/aziz/PlainTasks</a><br><img src="http://take.ms/G5Jp5" alt="새로운 도큐멘트 열기"></p>
+<h4 id="사용방법-1"><a href="#사용방법-1" class="headerlink" title="사용방법"></a>사용방법</h4><ul>
+<li><code>shift-command-p</code> -&gt; tasks: New document</li>
+<li>뒤에 <code>:</code> 부호를 붙여 테스크를 분리하는 헤더를 생성</li>
+<li>할일을 적은 후에 <code>command+enter</code> 혹은 <code>command+i</code>를 누르면 앞쪽에 체크박스가 생성</li>
+<li>할일목록 뒤쪽에 <code>@</code>을 입력 후 태그</li>
+<li><code>-- + tab</code>으로 구분선을 생성</li>
+<li>완료된 할일 위에 커서를 위치하고 <code>command+D</code>를 누르면 해당 할일이 완료</li>
+<li><code>shift+command+A</code>를 눌러 완료된 할일들을 따로 보관</li>
+<li><code>contorl+C</code>를 눌러 할일을 취소</li>
+<li>‘control+command+위 아래 방향키’로 목록을 위 아래로 이동<br>  (이 기능은 서브라임 자체 기능이다.)</li>
+</ul>
+<h4 id="문제점"><a href="#문제점" class="headerlink" title="문제점"></a>문제점</h4><ul>
+<li>한글 지원 미흡<ul>
+<li>가끔씩 깨지는 경우 발생</li>
+<li>테스크를 취소하는 <code>contorl+C</code>가 한글입력상태에서 동작하지 않음</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#프로젝트-관리"><span class="toc-number">1.</span> <span class="toc-text">프로젝트 관리</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#플러그인"><span class="toc-number">2.</span> <span class="toc-text">플러그인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Package-Control-설치"><span class="toc-number">2.1.</span> <span class="toc-text">Package Control 설치</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sublime-Text-3의-경우"><span class="toc-number">2.1.1.</span> <span class="toc-text">Sublime Text 3의 경우</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sublime-Text-2의-경우"><span class="toc-number">2.1.2.</span> <span class="toc-text">Sublime Text 2의 경우</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-Requester"><span class="toc-number">2.2.</span> <span class="toc-text">Http Requester</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용방법"><span class="toc-number">2.2.1.</span> <span class="toc-text">사용방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PlainTasks"><span class="toc-number">2.3.</span> <span class="toc-text">PlainTasks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용방법-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">사용방법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#문제점"><span class="toc-number">2.3.2.</span> <span class="toc-text">문제점</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/gs-sublime-text/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/gs-sublime-text/&text=서브라임 시작하기"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/gs-sublime-text/&is_video=false&description=서브라임 시작하기"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=서브라임 시작하기&body=Check out this article: http://dezang.github.io/gs-sublime-text/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/gs-sublime-text/&title=서브라임 시작하기"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/gs-sublime-text/&name=서브라임 시작하기&description=&lt;p&gt;서브라임은 개발자를 위한 잘 만들어진 에디터다. 서브라임으로 프로젝트 관리하는 방법과 &lt;code&gt;Package Control&lt;/code&gt;을 포함한 몇 가지 유용한 플러그인들을 소개하고, 그 사용법을 알아본다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

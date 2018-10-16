@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="이클립스는 개발자에게 없어서는 안되는 필수 도구이다. 자바 개발자라면 대부분 이클립스를 사용하고 있을텐데, 이클립스를 자신의 환경에 맞게 설정한 후 사용하면 개발이 더 편해진다.">
+<meta name="keywords" content="eclipse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이클립스 &#x2F; STS 설정의 모든 것">
+<meta property="og:url" content="http://dezang.github.io/configuration-of-the-eclipse/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="이클립스는 개발자에게 없어서는 안되는 필수 도구이다. 자바 개발자라면 대부분 이클립스를 사용하고 있을텐데, 이클립스를 자신의 환경에 맞게 설정한 후 사용하면 개발이 더 편해진다.">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이클립스 &#x2F; STS 설정의 모든 것">
+<meta name="twitter:description" content="이클립스는 개발자에게 없어서는 안되는 필수 도구이다. 자바 개발자라면 대부분 이클립스를 사용하고 있을텐데, 이클립스를 자신의 환경에 맞게 설정한 후 사용하면 개발이 더 편해진다.">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>이클립스 / STS 설정의 모든 것</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/introducing-MAMP/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/how-to-install-lemp-stack-on-ubuntu-14-04/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/configuration-of-the-eclipse/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/configuration-of-the-eclipse/&text=이클립스 / STS 설정의 모든 것"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/configuration-of-the-eclipse/&is_video=false&description=이클립스 / STS 설정의 모든 것"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=이클립스 / STS 설정의 모든 것&body=Check out this article: http://dezang.github.io/configuration-of-the-eclipse/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/configuration-of-the-eclipse/&name=이클립스 / STS 설정의 모든 것&description=&lt;p&gt;이클립스는 개발자에게 없어서는 안되는 필수 도구이다. 자바 개발자라면 대부분 이클립스를 사용하고 있을텐데, 이클립스를 자신의 환경에 맞게 설정한 후 사용하면 개발이 더 편해진다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#이클립스-STS-ini-설정-파일-최적화"><span class="toc-number">1.</span> <span class="toc-text">이클립스 STS ini 설정 파일 최적화</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ini-Default-기본-설정"><span class="toc-number">1.1.</span> <span class="toc-text">ini Default(기본) 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#이클립스-기본-설정-eclipse-ini-수정"><span class="toc-number">1.1.1.</span> <span class="toc-text">이클립스 기본 설정(eclipse.ini 수정)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STS-기본-설정-STS-ini-수정"><span class="toc-number">1.1.2.</span> <span class="toc-text">STS 기본 설정(STS.ini 수정)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ini-파일-변경"><span class="toc-number">1.2.</span> <span class="toc-text">ini 파일 변경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ini-변경-사항-상세-설명"><span class="toc-number">1.3.</span> <span class="toc-text">ini 변경 사항 상세 설명</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#메모리-설명"><span class="toc-number">1.3.1.</span> <span class="toc-text">메모리 설명</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#필수설정"><span class="toc-number">2.</span> <span class="toc-text">필수설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#파일-인코딩-변경"><span class="toc-number">2.1.</span> <span class="toc-text">파일 인코딩 변경</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#기타"><span class="toc-number">3.</span> <span class="toc-text">기타</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#컬러-테마-변경"><span class="toc-number">3.1.</span> <span class="toc-text">컬러 테마 변경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#이클립스-실행시-이미지변경"><span class="toc-number">3.2.</span> <span class="toc-text">이클립스 실행시 이미지변경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#메모리-보기"><span class="toc-number">3.3.</span> <span class="toc-text">메모리 보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#사용하지-않는-검사-제거"><span class="toc-number">3.4.</span> <span class="toc-text">사용하지 않는 검사 제거</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#영어스펠링-검사-끄기"><span class="toc-number">3.5.</span> <span class="toc-text">영어스펠링 검사 끄기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#기능-Disable-습관-바꾸기"><span class="toc-number">3.6.</span> <span class="toc-text">기능 Disable / 습관 바꾸기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Automatic-folding-끄기"><span class="toc-number">3.6.1.</span> <span class="toc-text">Automatic folding 끄기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Automatic-Code-Insight-끄기"><span class="toc-number">3.6.2.</span> <span class="toc-text">Automatic Code Insight 끄기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-플러그인-삭제-하기"><span class="toc-number">3.6.3.</span> <span class="toc-text">사용하지 않는 플러그인 삭제 하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-프로젝트-닫아주기"><span class="toc-number">3.6.4.</span> <span class="toc-text">사용하지 않는 프로젝트 닫아주기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-파일은-닫아주기"><span class="toc-number">3.6.5.</span> <span class="toc-text">사용하지 않는 파일은 닫아주기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-플러그인을-start-list에서-제외하기"><span class="toc-number">3.6.6.</span> <span class="toc-text">사용하지 않는 플러그인을 start list에서 제외하기</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#자동줄바꿈-word-wrap"><span class="toc-number">3.7.</span> <span class="toc-text">자동줄바꿈(word wrap)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">3.7.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        이클립스 / STS 설정의 모든 것
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-04-14T07:56:47.000Z" itemprop="datePublished">2015-04-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/eclipse/">eclipse</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>이클립스는 개발자에게 없어서는 안되는 필수 도구이다. 자바 개발자라면 대부분 이클립스를 사용하고 있을텐데, 이클립스를 자신의 환경에 맞게 설정한 후 사용하면 개발이 더 편해진다.</p>
+<a id="more"></a>
+<p>대장 또한 컴퓨터를 갈아 엎고나서 이클립스를 설치 한 뒤 가장 먼저하는 것이 환경 설정이다. 매번 이곳저것 뒤져가며 설정하는 것이 번거로워 이클립스 설정을 한자리에 모두 모아보았다.</p>
+<p>대장이 꺼려하는 것 중에 하나는 지금하는 설정이 무엇을 변경하는 것인지도 모른 채 설정하는 것이다. 따라서 각 설정마다 최대한 자세히 설명을 첨부하려고 노력했으며, 설명을 보고 자신에게 필요없는 설정은 하지 않으면 된다. 혹시라도 설정하다가 모르는 부분을 댓글로 문의한다면 따로 자세히 포스팅하도록 하겠다.</p>
+<p><em>(추가적으로 이클립스 성능향상이나 개발자에게 도움이 되는 설정이 있으면 댓글로 알려주세요!)</em></p>
+<p>이클립스를 사용하는 개발자들에게 많은 도움이 되었으면 한다.</p>
+<h2 id="이클립스-STS-ini-설정-파일-최적화"><a href="#이클립스-STS-ini-설정-파일-최적화" class="headerlink" title="이클립스 STS ini 설정 파일 최적화"></a>이클립스 STS ini 설정 파일 최적화</h2><p>아래는 변경하지 않은 이클립스/STS 설정 파일의 전문이다. 혹시라도 설정을 변경하다가 실행이 되지 않거나 오류가 발생한다면, 아래를 참고하여 기본 설정값으로 되돌리면 된다.</p>
+<h3 id="ini-Default-기본-설정"><a href="#ini-Default-기본-설정" class="headerlink" title="ini Default(기본) 설정"></a>ini Default(기본) 설정</h3><h4 id="이클립스-기본-설정-eclipse-ini-수정"><a href="#이클립스-기본-설정-eclipse-ini-수정" class="headerlink" title="이클립스 기본 설정(eclipse.ini 수정)"></a>이클립스 기본 설정(eclipse.ini 수정)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-startup</span><br><span class="line">plugins/org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar</span><br><span class="line">--launcher.library</span><br><span class="line">plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.1.200.v20140116-2212</span><br><span class="line">-product</span><br><span class="line">org.eclipse.epp.package.jee.product</span><br><span class="line">--launcher.defaultAction</span><br><span class="line">openFile</span><br><span class="line">--launcher.XXMaxPermSize</span><br><span class="line">256M</span><br><span class="line">-showsplash</span><br><span class="line">org.eclipse.platform</span><br><span class="line">--launcher.XXMaxPermSize</span><br><span class="line">256m</span><br><span class="line">--launcher.defaultAction</span><br><span class="line">openFile</span><br><span class="line">--launcher.appendVmargs</span><br><span class="line">-vmargs</span><br><span class="line">-Dosgi.requiredJavaVersion=1.6</span><br><span class="line">-Xms40m</span><br><span class="line">-Xmx512m</span><br></pre></td></tr></table></figure>
+<h4 id="STS-기본-설정-STS-ini-수정"><a href="#STS-기본-설정-STS-ini-수정" class="headerlink" title="STS 기본 설정(STS.ini 수정)"></a>STS 기본 설정(STS.ini 수정)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">plugins/org.eclipse.equinox.launcher_1.3.0.v20120522-1813.jar</span><br><span class="line">--launcher.library</span><br><span class="line">plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.1.200.v20120913-144807</span><br><span class="line">-product</span><br><span class="line">org.springsource.sts.ide</span><br><span class="line">--launcher.defaultAction</span><br><span class="line">openFile</span><br><span class="line">--launcher.XXMaxPermSize</span><br><span class="line">256M</span><br><span class="line">-vmargs</span><br><span class="line">-Dosgi.requiredJavaVersion=1.6</span><br><span class="line">-Xms40m</span><br><span class="line">-Xmx768m</span><br><span class="line">-XX:MaxPermSize=256m</span><br><span class="line">-Dgrails.console.enable.interactive=false</span><br><span class="line">-Dgrails.console.enable.terminal=false</span><br><span class="line">-Djline.terminal=jline.UnsupportedTerminal</span><br><span class="line">-Dgrails.console.class=grails.build.logging.GrailsEclipseConsole</span><br></pre></td></tr></table></figure>
+<h3 id="ini-파일-변경"><a href="#ini-파일-변경" class="headerlink" title="ini 파일 변경"></a>ini 파일 변경</h3><p>위 파일에서 <code>vmargs</code> 이하 부분을 아래와 같이 변경 혹은 추가한다. 각 설정에 따른 설명은 아래 쪽에 기재하였다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-vmargs</span><br><span class="line">-Dosgi.requiredJavaVersion=1.6</span><br><span class="line">-Xverify:none</span><br><span class="line">-XX:+UseParallelGC</span><br><span class="line">-XX:+AggressiveOpts</span><br><span class="line">-XX:-UseConcMarkSweepGC</span><br><span class="line">-XX:PermSize=128M</span><br><span class="line">-XX:MaxPermSize=128M</span><br><span class="line">-XX:MaxNewSize=128M</span><br><span class="line">-XX:NewSize=128M</span><br><span class="line">-Xms512m</span><br><span class="line">-Xmx512m</span><br></pre></td></tr></table></figure></p>
+<h3 id="ini-변경-사항-상세-설명"><a href="#ini-변경-사항-상세-설명" class="headerlink" title="ini 변경 사항 상세 설명"></a>ini 변경 사항 상세 설명</h3><p>Dosgi.requiredJavaVersion=1.6<br>:   JDK 1.6 이상을 설치했을 경우에 1.6으로 설정하면 속도가 빨라진다.</p>
+<p>Xverify:none<br>:   클래스의 유효성을 검사 생략. (시작 시간이 줄어 빨라진다.) 초기 시동시 verfify체크를 하지 않는다. 당연히 시동이 빨라진다. 플러그인의 features에 문제가 발생 할 수 있는데 플러그인에 변경 사항이 있을 경우에는 이걸 키고 시동하고, 별 문제 없으면 추가해서 사용한다.</p>
+<p>XX:+UseParallelGC<br>:   병렬 가비지 컬렉션 사용. (병렬 처리로 속도 향상) Parallel Collector를 사용 하도록 한다. 체감 속도가 올라간다. 다중 프로세서를 사용한다면 필수.</p>
+<p>XX:+AggressiveOpts<br>:   컴파일러의 소수점 최적화 기능을 작동시켜 빨라진다.</p>
+<p>XX:-UseConcMarkSweepGC<br>:   병행 mark-sweep GC 수행하여 이클립스 GUI의 응답을 빠르게한다.</p>
+<p>XX:+CMSIncrementalMode=true<br>:   점진적인 GC</p>
+<p>XX:PermSize=128M<br>:   Permanent Generation(영구 영역) 크기(Out Of Memory 에러시 크기 조절)</p>
+<p>XX:MaxPermSize=128M<br>:   최대 Permanent Generation 크기</p>
+<p>XX:NewSize=128M<br>:   New Generation(새 영역) 크기</p>
+<p>XX:MaxNewSize=128M<br>:   New Generation(새 영역) 의 최대 크기</p>
+<p>Xms512m<br>:   이클립스가 사용하는 최소 Heap 메모리</p>
+<p>Xmx512m<br>:   이클립스가 사용하는 최대 Heap 메모리 최소와 최대를 같은 값으로 설정하면 오르락 내리락 하지않아 빨라진다.</p>
+<blockquote>
+<p>[메모리 정의 예]<br>1기가 이하 메모리인 컴퓨터인 경우 : -Xms256m -Xmx256m<br>2기가 ~ 3기가 메모리인 컴퓨터 : -Xms512m -Xmx512m<br>4기가 이상 메모리인 컴퓨터 : -Xms1024m -Xmx1024m</p>
+</blockquote>
+<h4 id="메모리-설명"><a href="#메모리-설명" class="headerlink" title="메모리 설명"></a>메모리 설명</h4><p>JVM 은 3가지 메모리 영역을 관리한다.</p>
+<ol>
+<li>Permanent(영구) 영역 : JVM 클래스와 메소드를 위한 공간. = PermSize 설정</li>
+<li>New/Young 영역 : 새로 생성된 개체들을 위한 공간. = NewSize 설정</li>
+<li>Old 영역 : 만들어진지 오래된 객체들의 공간.(New 영역에서 이동해 온다)</li>
+</ol>
+<h2 id="필수설정"><a href="#필수설정" class="headerlink" title="필수설정"></a>필수설정</h2><h3 id="파일-인코딩-변경"><a href="#파일-인코딩-변경" class="headerlink" title="파일 인코딩 변경"></a>파일 인코딩 변경</h3><ul>
+<li><code>Window -&gt; Preferences -&gt; General -&gt; Content Types</code> 에서 각종 파일들의 인코딩을 UTF-8로 변경</li>
+<li>메뉴에서 window-preference 선택 후 <code>General-&gt;Workspace</code> 에서 Text file encoding을 UTF-8로 변경</li>
+</ul>
+<h2 id="기타"><a href="#기타" class="headerlink" title="기타"></a>기타</h2><h3 id="컬러-테마-변경"><a href="#컬러-테마-변경" class="headerlink" title="컬러 테마 변경"></a>컬러 테마 변경</h3><ul>
+<li>eclipsecolorthemes.org</li>
+</ul>
+<h3 id="이클립스-실행시-이미지변경"><a href="#이클립스-실행시-이미지변경" class="headerlink" title="이클립스 실행시 이미지변경"></a>이클립스 실행시 이미지변경</h3><p>ini 파일에서 아래 항목을 추가한다. 이미지 경로와 파일명은 자신이 원하는 것으로 변경한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- showsplash</span><br><span class="line">image/tan_helios.bmp</span><br></pre></td></tr></table></figure>
+<h3 id="메모리-보기"><a href="#메모리-보기" class="headerlink" title="메모리 보기"></a>메모리 보기</h3><p><code>Window &gt; Perference &gt; General</code> 에서 Show heap status 체크하면 오른쪽 하단에 메모리를 볼 수 있다. 사용하다가, 메모리가 많이 올라 갔다 싶거나, 느려졌다 싶을 때마다, 옆에 쓰레기통 아이콘을 눌러서 메모리를 줄인다. 그러면 좀 더 쾌적하게 작업을 할 수 있다.</p>
+<p>자동 가비지 컬렉션 플러그인 : <a href="http://gyuha.tistory.com/290" target="_blank" rel="noopener">http://gyuha.tistory.com/290</a></p>
+<h3 id="사용하지-않는-검사-제거"><a href="#사용하지-않는-검사-제거" class="headerlink" title="사용하지 않는 검사 제거"></a>사용하지 않는 검사 제거</h3><p>필요 이상으로 많은 검사를 많이 해서 느려지는 경우도 많다. HTML이나 그 외 등등의 검사도 거기에 포함된다. 딱 필요한 검사만 하도록 한다.<br><code>Window &gt; Perferences &gt; Validation</code> 에서 자기가 사용하는 옵션만 켜둔다.</p>
+<h3 id="영어스펠링-검사-끄기"><a href="#영어스펠링-검사-끄기" class="headerlink" title="영어스펠링 검사 끄기"></a>영어스펠링 검사 끄기</h3><p><code>Window &gt; Prereces &gt; General &gt; Editors &gt; Spellings에서 Enable spell checking</code></p>
+<h3 id="기능-Disable-습관-바꾸기"><a href="#기능-Disable-습관-바꾸기" class="headerlink" title="기능 Disable / 습관 바꾸기"></a>기능 Disable / 습관 바꾸기</h3><p>코딩하는 공간에서 잘 사용하지 않거나, 있는둥 마는둥 하는 기능을 꺼준다.</p>
+<h4 id="Automatic-folding-끄기"><a href="#Automatic-folding-끄기" class="headerlink" title="Automatic folding 끄기"></a>Automatic folding 끄기</h4><p>코드 옆에 더하기 표시 나와서, 코드를 펼쳤다.. 닫았다 하는 기능이다.<br><code>Window-&gt;Preferences-&gt;Java(또는 사용언어)-&gt;Editor-&gt;Folding</code> 모든 옵션을 해제(disable)한다.</p>
+<h4 id="Automatic-Code-Insight-끄기"><a href="#Automatic-Code-Insight-끄기" class="headerlink" title="Automatic Code Insight 끄기"></a>Automatic Code Insight 끄기</h4><p><code>Window-&gt;Preferences-&gt;Java(또는 해당언어)-&gt;Editor-&gt;Code Assist</code> 에서 <code>Enable auto activation</code> 항목을 해제(disable)한다. 자동으로 동작하는 code assist 기능은 꺼지지만, ctrl+space으로 여전히 code assist를 사용할 수 있다. 손이 좀 불편하면 이클립스가 빨라진다. 하지만 대장은 이거 없인 못 살아서 켜놓았다.</p>
+<h4 id="사용하지-않는-플러그인-삭제-하기"><a href="#사용하지-않는-플러그인-삭제-하기" class="headerlink" title="사용하지 않는 플러그인 삭제 하기"></a>사용하지 않는 플러그인 삭제 하기</h4><p>이클립스를 패키지로 설치하다 보면, 사용하지 않는 기능도 많이 들어 가게 된다. 그 중에서 사용하지 않는 플러그인은 삭제하도록 한다.</p>
+<h4 id="사용하지-않는-프로젝트-닫아주기"><a href="#사용하지-않는-프로젝트-닫아주기" class="headerlink" title="사용하지 않는 프로젝트 닫아주기"></a>사용하지 않는 프로젝트 닫아주기</h4><p>현재 작업과 관련없는 프로젝트를 닫자. 이클립스가 접근하는 파일의 갯수를 줄여준다.</p>
+<h4 id="사용하지-않는-파일은-닫아주기"><a href="#사용하지-않는-파일은-닫아주기" class="headerlink" title="사용하지 않는 파일은 닫아주기"></a>사용하지 않는 파일은 닫아주기</h4><p>작업하다가 사용하지 않는 창은 닫는다. 메모리가 절약된다. 이클립스를 종료시 편집하던 문서를 모두 닫고 종료하면 다음에 이클립스를 띄울때 좀 더 가볍게 띄울 수 있다. 그리고 <code>Window-&gt;Preferences-&gt;General-&gt;Editors</code>에서 <code>Close editors automatically</code>를 켜준다. 그럼 아래 설정된 숫자만큼만 문서가 열린다. 그 이상의 문서는 자동으로 닫아진다. 이렇게 사용하면, 무심결에 많이 열린 파일이 적어진다. 메모리 절약은 보너스!</p>
+<h4 id="사용하지-않는-플러그인을-start-list에서-제외하기"><a href="#사용하지-않는-플러그인을-start-list에서-제외하기" class="headerlink" title="사용하지 않는 플러그인을 start list에서 제외하기"></a>사용하지 않는 플러그인을 start list에서 제외하기</h4><p><code>Window &gt; Preferences &gt; General &gt; Startup and Shutdown</code>에서, 불필요한 플러그인을 startup list에서 제외한다. 이렇게 하면 이클립스 실행시 좀 더 가볍게 실행 할 수 있다.</p>
+<h3 id="자동줄바꿈-word-wrap"><a href="#자동줄바꿈-word-wrap" class="headerlink" title="자동줄바꿈(word wrap)"></a>자동줄바꿈(word wrap)</h3><ul>
+<li><a href="http://jedagi.tistory.com/30" target="_blank" rel="noopener">http://jedagi.tistory.com/30</a></li>
+</ul>
+<hr>
+<h4 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h4><ul>
+<li><a href="http://blackun.egloos.com/5179984" target="_blank" rel="noopener">http://blackun.egloos.com/5179984</a></li>
+<li><a href="http://ahtik.com/eclipse-update/" target="_blank" rel="noopener">http://ahtik.com/eclipse-update/</a></li>
+<li><a href="http://kwonnam.pe.kr/wiki/eclipse/config" target="_blank" rel="noopener">http://kwonnam.pe.kr/wiki/eclipse/config</a></li>
+<li><a href="http://blog.naver.com/sungback/90139189173" target="_blank" rel="noopener">http://blog.naver.com/sungback/90139189173</a></li>
+<li><a href="http://blog.naver.com/PostView.nhn?blogId=sungback&amp;logNo=90097516641" target="_blank" rel="noopener">http://blog.naver.com/PostView.nhn?blogId=sungback&amp;logNo=90097516641</a></li>
+<li><a href="http://thdnf1004.tistory.com/8" target="_blank" rel="noopener">http://thdnf1004.tistory.com/8</a></li>
+<li><a href="http://yun0223.tistory.com/42" target="_blank" rel="noopener">http://yun0223.tistory.com/42</a></li>
+<li><a href="http://gyuha.tistory.com/290" target="_blank" rel="noopener">http://gyuha.tistory.com/290</a></li>
+<li><a href="http://blog.bagesoft.com/443" target="_blank" rel="noopener">http://blog.bagesoft.com/443</a></li>
+<li><a href="http://www.slipp.net/wiki/pages/viewpage.action?pageId=5177633" target="_blank" rel="noopener">http://www.slipp.net/wiki/pages/viewpage.action?pageId=5177633</a></li>
+<li><a href="http://kwonnam.pe.kr/wiki/eclipse/config" target="_blank" rel="noopener">http://kwonnam.pe.kr/wiki/eclipse/config</a></li>
+<li><a href="http://blog.naver.com/sungback/90139189173" target="_blank" rel="noopener">http://blog.naver.com/sungback/90139189173</a></li>
+<li><a href="http://eclipsecolorthemes.org/" target="_blank" rel="noopener">http://eclipsecolorthemes.org/</a></li>
+<li><a href="http://fordev.tistory.com/79" target="_blank" rel="noopener">http://fordev.tistory.com/79</a></li>
+<li><a href="http://dkatlf900.tistory.com/55" target="_blank" rel="noopener">http://dkatlf900.tistory.com/55</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#이클립스-STS-ini-설정-파일-최적화"><span class="toc-number">1.</span> <span class="toc-text">이클립스 STS ini 설정 파일 최적화</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ini-Default-기본-설정"><span class="toc-number">1.1.</span> <span class="toc-text">ini Default(기본) 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#이클립스-기본-설정-eclipse-ini-수정"><span class="toc-number">1.1.1.</span> <span class="toc-text">이클립스 기본 설정(eclipse.ini 수정)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STS-기본-설정-STS-ini-수정"><span class="toc-number">1.1.2.</span> <span class="toc-text">STS 기본 설정(STS.ini 수정)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ini-파일-변경"><span class="toc-number">1.2.</span> <span class="toc-text">ini 파일 변경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ini-변경-사항-상세-설명"><span class="toc-number">1.3.</span> <span class="toc-text">ini 변경 사항 상세 설명</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#메모리-설명"><span class="toc-number">1.3.1.</span> <span class="toc-text">메모리 설명</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#필수설정"><span class="toc-number">2.</span> <span class="toc-text">필수설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#파일-인코딩-변경"><span class="toc-number">2.1.</span> <span class="toc-text">파일 인코딩 변경</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#기타"><span class="toc-number">3.</span> <span class="toc-text">기타</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#컬러-테마-변경"><span class="toc-number">3.1.</span> <span class="toc-text">컬러 테마 변경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#이클립스-실행시-이미지변경"><span class="toc-number">3.2.</span> <span class="toc-text">이클립스 실행시 이미지변경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#메모리-보기"><span class="toc-number">3.3.</span> <span class="toc-text">메모리 보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#사용하지-않는-검사-제거"><span class="toc-number">3.4.</span> <span class="toc-text">사용하지 않는 검사 제거</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#영어스펠링-검사-끄기"><span class="toc-number">3.5.</span> <span class="toc-text">영어스펠링 검사 끄기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#기능-Disable-습관-바꾸기"><span class="toc-number">3.6.</span> <span class="toc-text">기능 Disable / 습관 바꾸기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Automatic-folding-끄기"><span class="toc-number">3.6.1.</span> <span class="toc-text">Automatic folding 끄기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Automatic-Code-Insight-끄기"><span class="toc-number">3.6.2.</span> <span class="toc-text">Automatic Code Insight 끄기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-플러그인-삭제-하기"><span class="toc-number">3.6.3.</span> <span class="toc-text">사용하지 않는 플러그인 삭제 하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-프로젝트-닫아주기"><span class="toc-number">3.6.4.</span> <span class="toc-text">사용하지 않는 프로젝트 닫아주기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-파일은-닫아주기"><span class="toc-number">3.6.5.</span> <span class="toc-text">사용하지 않는 파일은 닫아주기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용하지-않는-플러그인을-start-list에서-제외하기"><span class="toc-number">3.6.6.</span> <span class="toc-text">사용하지 않는 플러그인을 start list에서 제외하기</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#자동줄바꿈-word-wrap"><span class="toc-number">3.7.</span> <span class="toc-text">자동줄바꿈(word wrap)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">3.7.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/configuration-of-the-eclipse/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/configuration-of-the-eclipse/&text=이클립스 / STS 설정의 모든 것"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/configuration-of-the-eclipse/&is_video=false&description=이클립스 / STS 설정의 모든 것"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=이클립스 / STS 설정의 모든 것&body=Check out this article: http://dezang.github.io/configuration-of-the-eclipse/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/configuration-of-the-eclipse/&title=이클립스 / STS 설정의 모든 것"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/configuration-of-the-eclipse/&name=이클립스 / STS 설정의 모든 것&description=&lt;p&gt;이클립스는 개발자에게 없어서는 안되는 필수 도구이다. 자바 개발자라면 대부분 이클립스를 사용하고 있을텐데, 이클립스를 자신의 환경에 맞게 설정한 후 사용하면 개발이 더 편해진다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

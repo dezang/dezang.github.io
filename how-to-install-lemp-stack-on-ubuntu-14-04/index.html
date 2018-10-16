@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="LEMP 소프트웨어 스택은 동적 웹 페이지와 웹 애플리케이션을 서비스할 수 있도록 만드는 소프트웨어의 그룹이다. LEMP는 리눅스 운영체제, 엔진엑스 웹서버의 기술 약어이다. 백엔드 데이터는 MySQL에 저장하고 동적 처리는 PHP에 의해 이루어진다. 이 포스트에서 우분투 14.04 서버에 LEMP stack을 설치하는 방법을 설명한다. 우분투는 이미 설치">
+<meta name="keywords" content="linux,nginx,mysql,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="우분투 14.04에 LEMP 스택 설치하기">
+<meta property="og:url" content="http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="LEMP 소프트웨어 스택은 동적 웹 페이지와 웹 애플리케이션을 서비스할 수 있도록 만드는 소프트웨어의 그룹이다. LEMP는 리눅스 운영체제, 엔진엑스 웹서버의 기술 약어이다. 백엔드 데이터는 MySQL에 저장하고 동적 처리는 PHP에 의해 이루어진다. 이 포스트에서 우분투 14.04 서버에 LEMP stack을 설치하는 방법을 설명한다. 우분투는 이미 설치">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://assets.digitalocean.com/articles/lemp_1404/nginx_default.png">
+<meta property="og:image" content="https://assets.digitalocean.com/articles/lemp_1404/php_info.png">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.927Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="우분투 14.04에 LEMP 스택 설치하기">
+<meta name="twitter:description" content="LEMP 소프트웨어 스택은 동적 웹 페이지와 웹 애플리케이션을 서비스할 수 있도록 만드는 소프트웨어의 그룹이다. LEMP는 리눅스 운영체제, 엔진엑스 웹서버의 기술 약어이다. 백엔드 데이터는 MySQL에 저장하고 동적 처리는 PHP에 의해 이루어진다. 이 포스트에서 우분투 14.04 서버에 LEMP stack을 설치하는 방법을 설명한다. 우분투는 이미 설치">
+<meta name="twitter:image" content="https://assets.digitalocean.com/articles/lemp_1404/nginx_default.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>우분투 14.04에 LEMP 스택 설치하기</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/configuration-of-the-eclipse/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/how-to-rotate-screen-in-windows/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&text=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&is_video=false&description=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=우분투 14.04에 LEMP 스택 설치하기&body=Check out this article: http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&name=우분투 14.04에 LEMP 스택 설치하기&description=&lt;p&gt;LEMP 소프트웨어 스택은 동적 웹 페이지와 웹 애플리케이션을 서비스할 수 있도록 만드는 소프트웨어의 그룹이다. LEMP는 리눅스 운영체제, 엔진엑스 웹서버의 기술 약어이다. 백엔드 데이터는 MySQL에 저장하고 동적 처리는 PHP에 의해 이루어진다. 이 포스트에서 우분투 14.04 서버에 LEMP stack을 설치하는 방법을 설명한다. 우분투는 이미 설치되었다고 가정하고 나머지 구성요소들을 설치하고 실행하는 방법을 설명한다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전제-조건"><span class="toc-number">1.</span> <span class="toc-text">전제 조건</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-단계-Nginx-웹-서버-설치"><span class="toc-number">2.</span> <span class="toc-text">1 단계 - Nginx 웹 서버 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-단계-사이트-데이터를-관리하기-위한-MySQL-설치"><span class="toc-number">3.</span> <span class="toc-text">2 단계 - 사이트 데이터를 관리하기 위한 MySQL 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-단계-프로세싱을-위한-PHP-설치"><span class="toc-number">4.</span> <span class="toc-text">3 단계 - 프로세싱을 위한 PHP 설치</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-프로세서-설정"><span class="toc-number">4.1.</span> <span class="toc-text">PHP 프로세서 설정</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-단계-Nginx가-PHP-프로세서를-사용하도록-설정"><span class="toc-number">5.</span> <span class="toc-text">4 단계 Nginx가 PHP 프로세서를 사용하도록 설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5번째-단계-설정-테스트를-위한-PHP-파일-생성"><span class="toc-number">6.</span> <span class="toc-text">5번째 단계 - 설정 테스트를 위한 PHP 파일 생성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#결론"><span class="toc-number">7.</span> <span class="toc-text">결론</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">7.0.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        우분투 14.04에 LEMP 스택 설치하기
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-03-26T09:24:37.000Z" itemprop="datePublished">2015-03-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>, <a class="tag-link" href="/tags/mysql/">mysql</a>, <a class="tag-link" href="/tags/nginx/">nginx</a>, <a class="tag-link" href="/tags/php/">php</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>LEMP 소프트웨어 스택은 동적 웹 페이지와 웹 애플리케이션을 서비스할 수 있도록 만드는 소프트웨어의 그룹이다. LEMP는 리눅스 운영체제, 엔진엑스 웹서버의 기술 약어이다. 백엔드 데이터는 MySQL에 저장하고 동적 처리는 PHP에 의해 이루어진다. 이 포스트에서 우분투 14.04 서버에 LEMP stack을 설치하는 방법을 설명한다. 우분투는 이미 설치되었다고 가정하고 나머지 구성요소들을 설치하고 실행하는 방법을 설명한다.</p>
+<a id="more"></a>
+<h2 id="전제-조건"><a href="#전제-조건" class="headerlink" title="전제 조건"></a>전제 조건</h2><p>이 지침을 따라 하기 전에, 서버에 일반적인 sudo 권한을 가진 루트 계정이 아닌 사용자 계정이 있어야 한다. 이것은 <a href="/initial-server-setup-with-ubuntu-14-04/" title="우분투 14.04 서버 초기 설정">우분투 14.04 서버 초기 설정</a> 글을 통해 배울 수 있다.</p>
+<p>당신이 생성한 계정으로 로그인할 수 있다면, 본 지침의 다음 단계를 시작할 준비가 된 것이다.</p>
+<h2 id="1-단계-Nginx-웹-서버-설치"><a href="#1-단계-Nginx-웹-서버-설치" class="headerlink" title="1 단계 - Nginx 웹 서버 설치"></a>1 단계 - Nginx 웹 서버 설치</h2><p>사이트 방문자에 웹 페이지를 표시하기 위해 우리는 현대적이며(?) 효율적인 Nginx 웹 서버를 사용할 것이다.</p>
+<p>이 절차에서 모든 소프트웨어는 우분투의 기본 패키지 저장소에서 가져올 것이다. 이것은 설치를 완료하기 위해 <code>apt</code> 패키지 관리자를 사용한다는 것을 의미한다.</p>
+<p>이 세션에서 <code>apt</code>를 사용하는 것은 처음이기 때문에 우리는 로컬 패키지 인덱스를 업데이트하고 시작해야 한다. 다음 명령어를 통해 nginx를 설치할 수 있다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<p>우분투 14.04 에서 Nginx는 설치 시 실행하도록 구성되어 있다. 웹 브라우저에 서버 도메인이나 공인 IP를 입력하여 서버가 정상적으로 설치되었고 동작하는지 확인할 수 있다. 도메인이 아직 서버를 가리키지 않거나, 당신이 서버의 공인 IP 주소를 모른다면 터미널에 다음 명령어들 중 하나를 입력하여 확인할 수 있다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ip addr show eth0 | grep inet | awk <span class="string">'&#123; print $2; &#125;'</span> | sed <span class="string">'s/\/.*$//'</span></span><br><span class="line"></span><br><span class="line">111.111.111.111</span><br><span class="line">FE80 :: 601 : 17ff : fe61 : 9801</span><br></pre></td></tr></table></figure>
+<p>명령어를 입력하기 어렵다면 <code>ip addr show eth0</code> 만으로도 충분히 ip를 식별할 수 있을 것이다. 유명한 <code>ifconfig</code> 명령어로도 알 수 있다. 공인 아이피가 <code>eth0</code> 에 설정되지 않고 다른 이더넷에 설정되었을 수도 있으니 개인적으로는 <code>ifconfig</code> 명령어를 사용하여 확인하는 것을 추천한다.</p>
+<p>또는 <code>iconhazip</code> 사이트를 이용하여 알 수도 있다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://icanhazip.com</span><br><span class="line"></span><br><span class="line">111.111.111.111</span><br></pre></td></tr></table></figure>
+<p>위 과정을 통해 알아낸 아이피 혹은 아이피와 연결된 도메인을 웹 브라우저 입력하자. 그러면 Nginx의 기본 랜딩 페이지를 볼 수 있을 것이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://server_domain_name_or_IP</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.digitalocean.com/articles/lemp_1404/nginx_default.png" alt=""></p>
+<p>위의 페이지를 볼 경우, 성공적으로 Nginx가 설치된 것이다.</p>
+<h2 id="2-단계-사이트-데이터를-관리하기-위한-MySQL-설치"><a href="#2-단계-사이트-데이터를-관리하기-위한-MySQL-설치" class="headerlink" title="2 단계 - 사이트 데이터를 관리하기 위한 MySQL 설치"></a>2 단계 - 사이트 데이터를 관리하기 위한 MySQL 설치</h2><p>이제 우리는 웹서버를 가지게 되었으니, 사이트의 데이터를 관리하기 위해 데이터 관리 시스템인 MySQL 설치가 필요하다. 아래를 입력하여 쉽게 설치할 수 있다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
+<p>설치가 마지막에 MySQL의 시스템 내에서 사용하기 위한 루트(관리자) 암호를 입력하라는 메시지를 볼 수 있다. 이제 MySQL 데이터베이스 소프트웨어는 설치되었지만, 그 구성은 아직 정확히 완료되지 않았다.</p>
+<p>첫 번째로, MySQL이 데이터베이스와 정보를 저장할 디렉터리 구조를 생성하기 위하여 다음을 입력해야 한다:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mysql_install_db</span><br></pre></td></tr></table></figure>
+<p>다음으로, 안전하지 않은 기본값을 수정하라는 메시지를 표시하는 간단한 보안 스크립트를 실행하는 것이 좋다. 다음을 입력하여 스크립트를 시작하자:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<p>그럼 설치 중에 입력한 MySQL의 루트 암호를 입력해야 한다.</p>
+<p>다음으로 비밀번호를 바꾸고 싶은지 물을 것이다. 당신의 MySQL 루트 암호가 만족스럽다면 “N”을 입력 후 엔터를 누르면 된다. 그 후 몇몇 테스트 사용자와 데이터베이스를 제거하라는 메시지가 표시된다. 안전하지 않은 기본 설정들을 제거하려면 단지 프롬프트에 “ENTER” 를 입력하면 된다. .</p>
+<p>스크립트가 모두 실행되면, MySQL은 시작할 준비가 된 것이다.</p>
+<h2 id="3-단계-프로세싱을-위한-PHP-설치"><a href="#3-단계-프로세싱을-위한-PHP-설치" class="headerlink" title="3 단계 - 프로세싱을 위한 PHP 설치"></a>3 단계 - 프로세싱을 위한 PHP 설치</h2><p>이제 우리는 우리의 페이지를 제공하기 위해 Nginx 설치를 했고, 우리의 데이터를 저장하고 관리하기 위한 MySQL도 설치했다. 하지만 우리는 여전히 이 두 가지를 연결하고 동적 콘텐츠를 생성하기 위해 뭔가를 해야 한다. 이를 위해 우리는 PHP를 사용할 수 있다.</p>
+<p>Nginx는 다른 웹 서버와 달리 네이티브 PHP 처리를 포함하지 않기 때문에, <code>PHP5-FPM</code> (FastCGI process manager)를 설치해야 한다. PHP 요청을 이 소프트웨어가 처리하도록 엔진엑스를 통해 전달할 것이다.</p>
+<p>우리는 이 모듈과 데이터베이스 백엔드와 통신 할 수 있도록 하는 부가적인 헬퍼 패키지를 함께 설치할 것이다. 이 설치작업은 필수적인 PHP 코어 파일이 필요하다. 다음을 입력하여 이를 수행한다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install php5-fpm php5-mysql</span><br></pre></td></tr></table></figure>
+<h3 id="PHP-프로세서-설정"><a href="#PHP-프로세서-설정" class="headerlink" title="PHP 프로세서 설정"></a>PHP 프로세서 설정</h3><p>이제 PHP 구성 요소가 설치되어 있지만, 더욱 안전하게 하기 위하여 약간의 변경이 필요하다.</p>
+<p>루트 권한으로 <code>php5-fpm</code> 설정 파일을 연다:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/php5/fpm/php.ini</span><br></pre></td></tr></table></figure>
+<p>이 파일에서 <code>cgi.fix_pathinfo</code> 라는 설정 매개 변수를 찾는다. 이것은 세미콜론으로 주석처리 돼 있고 기본적으로 1로 설정되어 있을 것이다. 이것은 매우 안전하지 않은 설정이다. 이유는 PHP 파일이 정확히 일치하지 않는 경우 가장 근접한 파일 실행을 시도 하는 설정이기 때문이다. 이 설정이 허용되지 않도록 설정해야 사용자가 원하는 방식으로 PHP 요청을 할 수 있다.</p>
+<p>라인의 주석을 풀고 “0”으로 설정하여 취약점을 제거한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cgi.fix_pathinfo = 0</span><br></pre></td></tr></table></figure>
+<p>저장이 완료되면 파일을 닫는다.</p>
+<p>이제, 다음을 입력하여 PHP 프로세서를 다시 시작한다 :</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service php5-fpm restart</span><br></pre></td></tr></table></figure>
+<p>이것은 변경 사항을 적용할 것이다.</p>
+<h2 id="4-단계-Nginx가-PHP-프로세서를-사용하도록-설정"><a href="#4-단계-Nginx가-PHP-프로세서를-사용하도록-설정" class="headerlink" title="4 단계 Nginx가 PHP 프로세서를 사용하도록 설정"></a>4 단계 Nginx가 PHP 프로세서를 사용하도록 설정</h2><p>이제 우리는 설치에 필요한 모든 구성 요소를 가지고 있다. 앞으로 해야 할 유일한 구성 변경은 동적 콘텐츠에 대한 PHP 처리기를 Nginx가 사용하도록 하는 것이다.</p>
+<p>우리는 서버 블록에서 이 작업을 수행한다. (서버 블록은 아파치의 가상 호스트와 유사하다.) 다음을 입력하여 기본 Nginx 서버 블록 구성 파일을 연다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+<p>이 원문의 마지막 업데이트는 2014년 7월. 이 글을 번역하는 2015년 3월 26일 기준으로 디폴트 엔진엑스 서버 블록 구성 파일의 위치는 <code>/etc/nginx/conf.d/default.conf</code> 이다.</p>
+<p>주석처리가 된 부분을 제거하면, 엔진엑스의 기본 서버 블록 파일은 아래와 같을 것이다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server ipv6only=on;</span><br><span class="line"></span><br><span class="line">    root /usr/share/nginx/html;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name localhost;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ =404;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>내 기본 설정파일이랑 좀 다른데? ㅠㅠ</em></p>
+<p>사이트를 위해 약간의 변경이 필요하다</p>
+<ul>
+<li>디렉터리가 요청될 때 PHP index 파일이 제공될 수 있도록 index 지시자에 <code>index.php</code> 를 추가한다.</li>
+<li><code>server_name</code> 지시자가 자신의 도메인 주소 또는 공인 IP를 가리키도록 수정한다.</li>
+<li>현재 구성 파일은 오류 처리 루틴을 정의하는 몇 라인이 주석처리 되어있다. 이 기능을 포함하도록 주석을 해제한다.</li>
+<li>실제 PHP 처리를 위해, 다른 섹션의 일부를 주석을 해제해야 한다. 또한 Nginx가 잘못된 요청을 PHP 프로세서에 전달하지 않도록 하기 위해서<code>try_files</code> 지시자를 추가해야 한다.</li>
+</ul>
+<p>위 사항들을 변경하면 서버 블록은 다음과 같을 것이다.</p>
+<p><em>원문에는 변경된 부분이 빨간색으로 표시되어 있지만 내 블로그 테마의 설정상 코드 내부의 특정 라인 색깔을 변경하는 게 어려워 그냥 옮겼다.</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server ipv6only=on;</span><br><span class="line"></span><br><span class="line">    root /usr/share/nginx/html;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name server_domain_name_or_IP;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ =404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        try_files <span class="variable">$uri</span> =404;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>이 부분은 내 블록 파일과 많이 달라서 추가한 부분과 비슷한 주석 처리된 부분의 주석을 해제하기만 하였다. 서버 블록 설정에 대해서는 다른 최신 글을 통해 더 조사해봐야 할 듯</em></p>
+<p>위의 변경한 뒤 파일을 저장하고 닫는다.</p>
+<p>변경한 것들을 적용하기 위해 Nginx를 재시작한다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service nginx restart</span><br></pre></td></tr></table></figure>
+<h2 id="5번째-단계-설정-테스트를-위한-PHP-파일-생성"><a href="#5번째-단계-설정-테스트를-위한-PHP-파일-생성" class="headerlink" title="5번째 단계 - 설정 테스트를 위한 PHP 파일 생성"></a>5번째 단계 - 설정 테스트를 위한 PHP 파일 생성</h2><p>이제 LEMP 스택은 완전히 설정되었다. 이제 Nginx가 <code>.php</code> PHP 프로세서로 확실히 핸들링하는지 확인해봐야 한다.</p>
+<p>문서 루트에서 테스트 PHP 파일을 만들어 이 작업을 수행할 수 있다. 텍스트 편집기로 문서 루트 안에 <code>info.php</code> 파일을 생성하고 연다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /usr/share/nginx/html/info.php</span><br></pre></td></tr></table></figure>
+<p>서버의 정보를 반환하여 보여주는 php 코드를 입력한다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    phpinfo ();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>작업이 완료되면 파일을 저장하고 닫는다. 이제 서버의 도메인 이름 또는 공인 IP 주소를 방문하여 웹 브라우저에서 이 페이지를 방문한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP : // server_domain_name_or_IP /info.php</span><br></pre></td></tr></table></figure>
+<p>별다른 문제가 없다면 서버에 대한 정보를 PHP에 의해 생성된 웹 페이지를 볼 수 있을 것이다</p>
+<p><img src="https://assets.digitalocean.com/articles/lemp_1404/php_info.png" alt=""></p>
+<p>이처럼 보이는 페이지를 볼 경우, 당신은 성공적으로 Nginx에 PHP 처리를 설정한 것이다.</p>
+<p>이 테스트 후에는 파일을 제거하도록 하자. 제거하지 않는다면 이 파일은 허가받지 않은 사용자들이 침입을 시도하는 데 도움이 될 수 있는 정보를 제공하게 될 것이다.</p>
+<p>아래를 입력하여 파일을 제거한다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /usr/share/nginx/html/info.php</span><br></pre></td></tr></table></figure>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>이것으로 우분투 14.04 서버에 LEMP 스택 구성을 완료하였다. LEMP 스택은 당신의 방문자에게 웹 콘텐츠를 제공하기 위한 매우 유연한 기반을 제공할 것이다.</p>
+<hr>
+<h4 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h4><ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전제-조건"><span class="toc-number">1.</span> <span class="toc-text">전제 조건</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-단계-Nginx-웹-서버-설치"><span class="toc-number">2.</span> <span class="toc-text">1 단계 - Nginx 웹 서버 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-단계-사이트-데이터를-관리하기-위한-MySQL-설치"><span class="toc-number">3.</span> <span class="toc-text">2 단계 - 사이트 데이터를 관리하기 위한 MySQL 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-단계-프로세싱을-위한-PHP-설치"><span class="toc-number">4.</span> <span class="toc-text">3 단계 - 프로세싱을 위한 PHP 설치</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-프로세서-설정"><span class="toc-number">4.1.</span> <span class="toc-text">PHP 프로세서 설정</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-단계-Nginx가-PHP-프로세서를-사용하도록-설정"><span class="toc-number">5.</span> <span class="toc-text">4 단계 Nginx가 PHP 프로세서를 사용하도록 설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5번째-단계-설정-테스트를-위한-PHP-파일-생성"><span class="toc-number">6.</span> <span class="toc-text">5번째 단계 - 설정 테스트를 위한 PHP 파일 생성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#결론"><span class="toc-number">7.</span> <span class="toc-text">결론</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">7.0.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&text=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&is_video=false&description=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=우분투 14.04에 LEMP 스택 설치하기&body=Check out this article: http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&title=우분투 14.04에 LEMP 스택 설치하기"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/how-to-install-lemp-stack-on-ubuntu-14-04/&name=우분투 14.04에 LEMP 스택 설치하기&description=&lt;p&gt;LEMP 소프트웨어 스택은 동적 웹 페이지와 웹 애플리케이션을 서비스할 수 있도록 만드는 소프트웨어의 그룹이다. LEMP는 리눅스 운영체제, 엔진엑스 웹서버의 기술 약어이다. 백엔드 데이터는 MySQL에 저장하고 동적 처리는 PHP에 의해 이루어진다. 이 포스트에서 우분투 14.04 서버에 LEMP stack을 설치하는 방법을 설명한다. 우분투는 이미 설치되었다고 가정하고 나머지 구성요소들을 설치하고 실행하는 방법을 설명한다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

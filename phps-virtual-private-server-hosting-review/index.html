@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="스프링 프레임워크를 기반으로 한 사내 인트라넷 개발을 하면서, 많은 문제점을 접했고 그것을 해결하면서 얻은 스킬 혹은 경험들을 정리하고 싶은 충동을 느꼈다. 나열하기도 벅찬 여러 종류의 블로그를 소유하고 있지만, 코드들을 미려하게 표현하고, 내가 원하는 스타일의 블로그를 위해서 워드프레스를 선택하기로 했다.">
+<meta name="keywords" content="phps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="phps 가상서버 호스팅 후기">
+<meta property="og:url" content="http://dezang.github.io/phps-virtual-private-server-hosting-review/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="스프링 프레임워크를 기반으로 한 사내 인트라넷 개발을 하면서, 많은 문제점을 접했고 그것을 해결하면서 얻은 스킬 혹은 경험들을 정리하고 싶은 충동을 느꼈다. 나열하기도 벅찬 여러 종류의 블로그를 소유하고 있지만, 코드들을 미려하게 표현하고, 내가 원하는 스타일의 블로그를 위해서 워드프레스를 선택하기로 했다.">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.929Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="phps 가상서버 호스팅 후기">
+<meta name="twitter:description" content="스프링 프레임워크를 기반으로 한 사내 인트라넷 개발을 하면서, 많은 문제점을 접했고 그것을 해결하면서 얻은 스킬 혹은 경험들을 정리하고 싶은 충동을 느꼈다. 나열하기도 벅찬 여러 종류의 블로그를 소유하고 있지만, 코드들을 미려하게 표현하고, 내가 원하는 스타일의 블로그를 위해서 워드프레스를 선택하기로 했다.">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>phps 가상서버 호스팅 후기</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/how-to-create-subdomains-on-a-name-based-virtualhost/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/centos-vs-mint-vs-ubuntu/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/phps-virtual-private-server-hosting-review/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&text=phps 가상서버 호스팅 후기"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&is_video=false&description=phps 가상서버 호스팅 후기"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=phps 가상서버 호스팅 후기&body=Check out this article: http://dezang.github.io/phps-virtual-private-server-hosting-review/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&name=phps 가상서버 호스팅 후기&description=&lt;p&gt;스프링 프레임워크를 기반으로 한 사내 인트라넷 개발을 하면서, 많은 문제점을 접했고 그것을 해결하면서 얻은 스킬 혹은 경험들을 정리하고 싶은 충동을 느꼈다. 나열하기도 벅찬 여러 종류의 블로그를 소유하고 있지만, 코드들을 미려하게 표현하고, 내가 원하는 스타일의 블로그를 위해서 워드프레스를 선택하기로 했다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#속도개선을-기대하며-결제한-웹호스팅-그러나…"><span class="toc-number">1.</span> <span class="toc-text">속도개선을 기대하며 결제한 웹호스팅 그러나…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#저렴한-서버-호스팅-Phps-kr"><span class="toc-number">2.</span> <span class="toc-text">저렴한 서버 호스팅 Phps.kr</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        phps 가상서버 호스팅 후기
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2014-05-29T05:29:33.000Z" itemprop="datePublished">2014-05-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/phps/">phps</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>스프링 프레임워크를 기반으로 한 사내 인트라넷 개발을 하면서, 많은 문제점을 접했고 그것을 해결하면서 얻은 스킬 혹은 경험들을 정리하고 싶은 충동을 느꼈다. 나열하기도 벅찬 여러 종류의 블로그를 소유하고 있지만, 코드들을 미려하게 표현하고, 내가 원하는 스타일의 블로그를 위해서 워드프레스를 선택하기로 했다.</p>
+<a id="more"></a>
+<p>워드프레스는 과거에 웹 호스팅을 통해, 또 맥 미니에 서버를 구축하여 운영해 본 경험이 있다. 그 당시 콘텐츠보다 그것을 담는 그릇(워드프레스)에 더 많은 시간을 투자하는 것 같아 설치형 블로그인 워드프레스를 폐쇄하고 가입형 블로그로 갈아탔었다. 갈아타고 많은 글을 작성하진 않았지만, 사용할 때마다 항상 워드프레스가 그립더라…</p>
+<h2 id="속도개선을-기대하며-결제한-웹호스팅-그러나…"><a href="#속도개선을-기대하며-결제한-웹호스팅-그러나…" class="headerlink" title="속도개선을 기대하며 결제한 웹호스팅 그러나…"></a>속도개선을 기대하며 결제한 웹호스팅 그러나…</h2><p>이런 저런 이유로 다시 워드프레스로 회귀하기로 했고, 웹호스팅 이전의 귀차니즘을 이미 한껏 느껴보았기 때문에 평생 사용할 웹호스팅을 찾기로 했다. 엄청 느리지만, 무료로 괜찮은 서비스를 제공했던 hostringer가 유료회원으로 전환하면 향상된 속도를 제공한다고 하여 한 달만 결제하고 사용해 보았다. 무제한 용량, 무제한 트래픽에 3년 결제 시 한 달에 3,000원이라는 저렴한 가격에 혹했지만, 프리미엄 회원임에도 여전히 버벅거리는 속도가 너무 답답했다. 거기다가 가입한 다음 날 오전 내내 로그인이 안 돼서 안정성에 대한 의구심마저 들게 되었다. 환급을 요청하는 문의를 등록했고 다른 서비스를 찾던 중 상당히 저렴한 가상서버 호스팅을 알게 되었다.</p>
+<h2 id="저렴한-서버-호스팅-Phps-kr"><a href="#저렴한-서버-호스팅-Phps-kr" class="headerlink" title="저렴한 서버 호스팅 Phps.kr"></a>저렴한 서버 호스팅 Phps.kr</h2><p>보통 서버 호스팅이라 하면 한 달에 3~4만 원 정도의 지출을 예상해야 한다. 예전부터 서버 호스팅은 고려대상이였지만 금액적인 부분 때문에 선뜻 선택하지 못했다. PHP 서버 외에도 돌려보고 싶은 게 많았기 때문에 투자해야겠다고 결심했다가도 다시 부담되어 저렴한 웹호스팅을 선택해왔다. 매달 내야 하는 비용부담만 해결된다면 좋겠다고 생각했는데 php스쿨에서 한 달에 4,500원 하는 가상 서버 호스팅 서비스를 제공하더라. 옳다구나! 하고 재빨리 결제했다.</p>
+<p>웹호스팅과 서버 호스팅의 차이점은 다른 글에서 따로 다루기로 하고, 간단히 사용 후기를 적어보자면 만족스럽다. 일단 웹호스팅과 달리 명령어의 제한도 없고, 권한이 없는 파일도 없다. (root 계정을 사용하니….) 리눅스의 배포판 버전부터, 파일 권한까지 모든 환경을 직접 설정할 수 있다는 점도 매력적이다. 다만 이를 위해서는 최근에 소홀했던 리눅스 공부를 다시 해야 할 것 같다.</p>
+<p>현재 이 블로그는 Hexo를 사용하여 github page에서 서비스되고 있다. 정적 블로그라 반응 속도 개선을 기대중이다. 무엇보다도 공짜! 이다. :-)</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#속도개선을-기대하며-결제한-웹호스팅-그러나…"><span class="toc-number">1.</span> <span class="toc-text">속도개선을 기대하며 결제한 웹호스팅 그러나…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#저렴한-서버-호스팅-Phps-kr"><span class="toc-number">2.</span> <span class="toc-text">저렴한 서버 호스팅 Phps.kr</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/phps-virtual-private-server-hosting-review/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&text=phps 가상서버 호스팅 후기"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&is_video=false&description=phps 가상서버 호스팅 후기"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=phps 가상서버 호스팅 후기&body=Check out this article: http://dezang.github.io/phps-virtual-private-server-hosting-review/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&title=phps 가상서버 호스팅 후기"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/phps-virtual-private-server-hosting-review/&name=phps 가상서버 호스팅 후기&description=&lt;p&gt;스프링 프레임워크를 기반으로 한 사내 인트라넷 개발을 하면서, 많은 문제점을 접했고 그것을 해결하면서 얻은 스킬 혹은 경험들을 정리하고 싶은 충동을 느꼈다. 나열하기도 벅찬 여러 종류의 블로그를 소유하고 있지만, 코드들을 미려하게 표현하고, 내가 원하는 스타일의 블로그를 위해서 워드프레스를 선택하기로 했다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

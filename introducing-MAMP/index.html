@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="워드프레스 테마나 플러그인을 개발하기 위해 웹호스팅을 받은 후 워드프레스를 올려 개발하는 방법이 있습니다만, 개발을 하려면 항상 인터넷에 연결되어 있어야 한다는 불편함이 있습니다. 이보다는 자신의 로컬에 워드프레스가 운영되는 환경을 설정하고 작업 후 완성된 결과물을 서버에 올려 서비스하는 것이 정신건강(?)에 더 이롭답니다. 테마 개발을 위한 로컬 서버 구">
+<meta name="keywords" content="setup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="로컬 개발 서버 구성을 빠르게 MAMP">
+<meta property="og:url" content="http://dezang.github.io/introducing-MAMP/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="워드프레스 테마나 플러그인을 개발하기 위해 웹호스팅을 받은 후 워드프레스를 올려 개발하는 방법이 있습니다만, 개발을 하려면 항상 인터넷에 연결되어 있어야 한다는 불편함이 있습니다. 이보다는 자신의 로컬에 워드프레스가 운영되는 환경을 설정하고 작업 후 완성된 결과물을 서버에 올려 서비스하는 것이 정신건강(?)에 더 이롭답니다. 테마 개발을 위한 로컬 서버 구">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://lh4.googleusercontent.com/-ZFLeYap0Pyc/VULKC7XwmwI/AAAAAAAAAHI/gplmWHFxaek/w608-h480-no/MAMP%2B2015-05-01%2B09-33-40.png">
+<meta property="og:image" content="https://lh6.googleusercontent.com/-5g7Xzmy0yFI/VULSEMKp0pI/AAAAAAAAAIA/aEwXMGImjR4/w902-h634-no/Monosnap%2B2015-05-01%2B10-07-54.png">
+<meta property="og:image" content="https://lh5.googleusercontent.com/-WD9Ms7ZHdi0/VULOUflPbbI/AAAAAAAAAH0/ZhJzBo-wAjg/s800/MAMP%2B2015-05-01%2B09-49-23.png">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="로컬 개발 서버 구성을 빠르게 MAMP">
+<meta name="twitter:description" content="워드프레스 테마나 플러그인을 개발하기 위해 웹호스팅을 받은 후 워드프레스를 올려 개발하는 방법이 있습니다만, 개발을 하려면 항상 인터넷에 연결되어 있어야 한다는 불편함이 있습니다. 이보다는 자신의 로컬에 워드프레스가 운영되는 환경을 설정하고 작업 후 완성된 결과물을 서버에 올려 서비스하는 것이 정신건강(?)에 더 이롭답니다. 테마 개발을 위한 로컬 서버 구">
+<meta name="twitter:image" content="https://lh4.googleusercontent.com/-ZFLeYap0Pyc/VULKC7XwmwI/AAAAAAAAAHI/gplmWHFxaek/w608-h480-no/MAMP%2B2015-05-01%2B09-33-40.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>로컬 개발 서버 구성을 빠르게 MAMP</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/initial-server-setup-with-ubuntu-14-04/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/configuration-of-the-eclipse/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/introducing-MAMP/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/introducing-MAMP/&text=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/introducing-MAMP/&is_video=false&description=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=로컬 개발 서버 구성을 빠르게 MAMP&body=Check out this article: http://dezang.github.io/introducing-MAMP/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/introducing-MAMP/&name=로컬 개발 서버 구성을 빠르게 MAMP&description=&lt;p&gt;워드프레스 테마나 플러그인을 개발하기 위해 웹호스팅을 받은 후 워드프레스를 올려 개발하는 방법이 있습니다만, 개발을 하려면 항상 인터넷에 연결되어 있어야 한다는 불편함이 있습니다. 이보다는 자신의 로컬에 워드프레스가 운영되는 환경을 설정하고 작업 후 완성된 결과물을 서버에 올려 서비스하는 것이 정신건강(?)에 더 이롭답니다. 테마 개발을 위한 로컬 서버 구성과 워드프레스 설치 방법을 알아보도록 하겠습니다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#서버-구성을-한방에-MAMP"><span class="toc-number">1.</span> <span class="toc-text">서버 구성을 한방에 MAMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MAMP-설정"><span class="toc-number">2.</span> <span class="toc-text">MAMP 설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number">3.</span> <span class="toc-text">마치며</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        로컬 개발 서버 구성을 빠르게 MAMP
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-05-06T05:03:00.000Z" itemprop="datePublished">2015-05-06</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/setup/">setup</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>워드프레스 테마나 플러그인을 개발하기 위해 웹호스팅을 받은 후 워드프레스를 올려 개발하는 방법이 있습니다만, 개발을 하려면 항상 인터넷에 연결되어 있어야 한다는 불편함이 있습니다. 이보다는 자신의 로컬에 워드프레스가 운영되는 환경을 설정하고 작업 후 완성된 결과물을 서버에 올려 서비스하는 것이 정신건강(?)에 더 이롭답니다. 테마 개발을 위한 로컬 서버 구성과 워드프레스 설치 방법을 알아보도록 하겠습니다.</p>
+<a id="more"></a>
+<h2 id="서버-구성을-한방에-MAMP"><a href="#서버-구성을-한방에-MAMP" class="headerlink" title="서버 구성을 한방에 MAMP"></a>서버 구성을 한방에 MAMP</h2><p>워드프레스를 사용하기 위해서는 세 가지가 필요합니다. 웹 서버, 데이터베이스, 그리고 동적언어인 php를 해석해주는 모듈이 그것이죠. 각 요소에 대표적인 제품들은 <code>Apache, Mysql, PHP</code> 입니다. 운영을 해야하는 서버라면 각각을 설치해서 최적화 작업을 진행하는 것이 좋겠지만 우리는 단순히 개발을 위해 로컬에서 사용할 환경을 설정해주는 것이므로 간단한 방법이 있다면 그것을 사용하는 것이 더 효과적이겠죠?</p>
+<p>이를 도와주는 것이 바로 AMP 입니다. 방금 말한 Apache, Mysql, PHP 환경을 프로그램 설치 한번으로 단방에 구성해줍니다. 그리고 맥에서 사용하는 AMP라 해서 MAMP도 나와있죠.</p>
+<p><img src="https://lh4.googleusercontent.com/-ZFLeYap0Pyc/VULKC7XwmwI/AAAAAAAAAHI/gplmWHFxaek/w608-h480-no/MAMP%2B2015-05-01%2B09-33-40.png" alt="MAMP"></p>
+<blockquote>
+<p>MAMP 공식 홈페이지 <a href="https://www.mamp.info/en/" target="_blank" rel="noopener">바로가기</a></p>
+</blockquote>
+<p>설치방법은 생략합니다. 그 정도는 눈감고도 할 수 있으시잖아요? :-)</p>
+<h2 id="MAMP-설정"><a href="#MAMP-설정" class="headerlink" title="MAMP 설정"></a>MAMP 설정</h2><p>환경설정에 들어가면 포트번호와 PHP 버전 그리고 최근 각광받고 있는 Nginx를 사용할 수 있도록 선택하는 부분이 있습니다. 저는 최근에 Nginx를 공부하고 있기에 요놈을 선택합니다. 사실 apache가 아닌 Nginx를 사용하면 MNMP라고 불리는게 맞는데 말이죠ㅎ</p>
+<p>여기서 중요한 게 웹루트를 설정해주는 것입니다. 웹서버로 돌릴 파일이 위치할 곳이죠. 우리가 추후에 워드프레스를 올릴 바로 그 곳입니다. 변경해주진 않더라도 어디에다가 워드프레스를 설치할 것인지는 알아둬야겠죠?</p>
+<p>참고로 저는 제가 사용하기 편한 곳으로 웹루트를 변경했습니다. 화살표를 누르면 해당 위치를 Finder로 바로 볼 수 있습니다. 참, 포트 번호를 기억하는 것도 잊지마세요.</p>
+<p><img src="https://lh6.googleusercontent.com/-5g7Xzmy0yFI/VULSEMKp0pI/AAAAAAAAAIA/aEwXMGImjR4/w902-h634-no/Monosnap%2B2015-05-01%2B10-07-54.png" alt="웹루트의 위치를 아는 것은 중요합니다."></p>
+<p>모든 설정은 마친 후 서버 시작을 누르면 로컬에서 웹 서버가 돌아갑니다.</p>
+<p>웹서버가 정상적으로 돌아가는지 확인하기 위해서 웹브라우저를 열고 <code>http://localhost:7888/MAMP/index.php?language=English</code>로 접속하여 아래와 같은 화면이 보이는지 확인합니다. 웹 서버 포트번호를 변경했다면 저 숫자를 변경한 포트번호로 바꿔야 합니다.</p>
+<p><img src="https://lh5.googleusercontent.com/-WD9Ms7ZHdi0/VULOUflPbbI/AAAAAAAAAH0/ZhJzBo-wAjg/s800/MAMP%2B2015-05-01%2B09-49-23.png" alt="MAMP 초기화면"></p>
+<p>phpinfo 메뉴를 눌러 php 정보가 제대로 보이는 것으로 봐서 php도 정상적으로 동작하고 있네요. MAMP 덕분에 이 화면을 보는게 힘들지 않지만 MAMP가 아니였다면 이 화면을 보기 위해 웹 서버에 PHP 모듈을 연결하고, 의존성을 고려해서 각종 라이브러리를 설치하고…뭐 막상해보면 별 거 아니긴 합니다만^^;; 우린 좋은 세상에 살고 있어요.</p>
+<p>MAMP는 PhpMyAdmin 이라는 Mysql 관리 도구도 제공해 주네요. 개인적으로 SQL 명령어 숙지를 위해 자주 쓰진 않지만 귀차니즘이 몰아칠 때 유용하게 쓰이는게 phpmyadmin이죠. 이 모든게 MAMP 하나로 순식간에 이루어지는 것이죠.</p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>자 이제 로컬에서 워드프레스를 돌릴 첫 단계가 끝났습니다. 본 과정은 워드프레스 테마 개발 뿐만이 아니라 PHP 서비스를 로컬에서 개발하여 운영서버로 배포하고자 한다면 필요한 과정입니다. 다음에는 지금까지 구성한 웹 서버에 워드프레스를 설치해보도록 하겠습니다. 행복하세요! :-)</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#서버-구성을-한방에-MAMP"><span class="toc-number">1.</span> <span class="toc-text">서버 구성을 한방에 MAMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MAMP-설정"><span class="toc-number">2.</span> <span class="toc-text">MAMP 설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number">3.</span> <span class="toc-text">마치며</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/introducing-MAMP/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/introducing-MAMP/&text=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/introducing-MAMP/&is_video=false&description=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=로컬 개발 서버 구성을 빠르게 MAMP&body=Check out this article: http://dezang.github.io/introducing-MAMP/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/introducing-MAMP/&title=로컬 개발 서버 구성을 빠르게 MAMP"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/introducing-MAMP/&name=로컬 개발 서버 구성을 빠르게 MAMP&description=&lt;p&gt;워드프레스 테마나 플러그인을 개발하기 위해 웹호스팅을 받은 후 워드프레스를 올려 개발하는 방법이 있습니다만, 개발을 하려면 항상 인터넷에 연결되어 있어야 한다는 불편함이 있습니다. 이보다는 자신의 로컬에 워드프레스가 운영되는 환경을 설정하고 작업 후 완성된 결과물을 서버에 올려 서비스하는 것이 정신건강(?)에 더 이롭답니다. 테마 개발을 위한 로컬 서버 구성과 워드프레스 설치 방법을 알아보도록 하겠습니다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="윈도우에서 단축키를 누르다보면 가끔 ctrl + alt + 방향키를 누르게 될 때가 있다. 그런데 갑자기 돌아가 버리는 화면. 자연스럽게 내 고개도 그 방향으로 꺾일 수 밖에 없다.ㅋㅋㅋ 잠깐만 고개를 꺾었을 뿐인데 피로가 순식간에 쌓이고, 마우스는 회전된 화면 덕분에 내가 원하는대로 움직이지도 않는다.ㅋㅋㅋ">
+<meta name="keywords" content="screen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="모니터 화면 90도 회전시 해결 방법">
+<meta property="og:url" content="http://dezang.github.io/how-to-rotate-screen-in-windows/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="윈도우에서 단축키를 누르다보면 가끔 ctrl + alt + 방향키를 누르게 될 때가 있다. 그런데 갑자기 돌아가 버리는 화면. 자연스럽게 내 고개도 그 방향으로 꺾일 수 밖에 없다.ㅋㅋㅋ 잠깐만 고개를 꺾었을 뿐인데 피로가 순식간에 쌓이고, 마우스는 회전된 화면 덕분에 내가 원하는대로 움직이지도 않는다.ㅋㅋㅋ">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="모니터 화면 90도 회전시 해결 방법">
+<meta name="twitter:description" content="윈도우에서 단축키를 누르다보면 가끔 ctrl + alt + 방향키를 누르게 될 때가 있다. 그런데 갑자기 돌아가 버리는 화면. 자연스럽게 내 고개도 그 방향으로 꺾일 수 밖에 없다.ㅋㅋㅋ 잠깐만 고개를 꺾었을 뿐인데 피로가 순식간에 쌓이고, 마우스는 회전된 화면 덕분에 내가 원하는대로 움직이지도 않는다.ㅋㅋㅋ">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>모니터 화면 90도 회전시 해결 방법</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/how-to-install-lemp-stack-on-ubuntu-14-04/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/wordpress-auto-update-troubleshooting/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/how-to-rotate-screen-in-windows/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&text=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&is_video=false&description=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=모니터 화면 90도 회전시 해결 방법&body=Check out this article: http://dezang.github.io/how-to-rotate-screen-in-windows/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&name=모니터 화면 90도 회전시 해결 방법&description=&lt;p&gt;윈도우에서 단축키를 누르다보면 가끔 &lt;code&gt;ctrl + alt + 방향키&lt;/code&gt;를 누르게 될 때가 있다. 그런데 갑자기 돌아가 버리는 화면. 자연스럽게 내 고개도 그 방향으로 꺾일 수 밖에 없다.ㅋㅋㅋ 잠깐만 고개를 꺾었을 뿐인데 피로가 순식간에 쌓이고, 마우스는 회전된 화면 덕분에 내가 원하는대로 움직이지도 않는다.ㅋㅋㅋ&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#발생-이유"><span class="toc-number">1.</span> <span class="toc-text">발생 이유</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#설정하기-전에…"><span class="toc-number">2.</span> <span class="toc-text">설정하기 전에…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#화면-회전-단축키-사용안함"><span class="toc-number">3.</span> <span class="toc-text">화면 회전 단축키 사용안함</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#화면을-왜-돌릴까"><span class="toc-number">4.</span> <span class="toc-text">화면을 왜 돌릴까?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참조"><span class="toc-number">4.0.1.</span> <span class="toc-text">참조</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        모니터 화면 90도 회전시 해결 방법
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-03-20T04:10:18.000Z" itemprop="datePublished">2015-03-20</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/screen/">screen</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>윈도우에서 단축키를 누르다보면 가끔 <code>ctrl + alt + 방향키</code>를 누르게 될 때가 있다. 그런데 갑자기 돌아가 버리는 화면. 자연스럽게 내 고개도 그 방향으로 꺾일 수 밖에 없다.ㅋㅋㅋ 잠깐만 고개를 꺾었을 뿐인데 피로가 순식간에 쌓이고, 마우스는 회전된 화면 덕분에 내가 원하는대로 움직이지도 않는다.ㅋㅋㅋ</p>
+<a id="more"></a>
+<p>개인적으로는 이 때 아이큐 테스트하는 느낌이다. 그 있잖아. 한 손으로는 네모 그리고 다른 손으로는 세모 그리고ㅋㅋㅋ 똑똑하면 탁탁 눌러가면서 설정을 되돌릴 수 있겠지만 내 머리로는 힘들더라.</p>
+<p>내가 뭘 눌렀는지 자각이라고 하고 있으면 다행이다. 어쩌다보니 키보드를 막 누르게 됐는데 회전되어 있는 화면… 멘붕일 수 밖에 없다. 해킹 당했다고 생각하는 것도 무리는 아니다. 자, 그럼 이러한 문제가 발생하는 이유와 발생시 해결하는 방법을 숙지하고 앞으로는 단축키로 회전되지 않도록 설정해보자.</p>
+<h2 id="발생-이유"><a href="#발생-이유" class="headerlink" title="발생 이유"></a>발생 이유</h2><p><code>Intel(R) HD Graphics Control Panel</code>에서 단축키가 설정되었기 때문에 발생하는 문제다. 특정 그래픽카드 드라이버를 설치하면 저 유틸리티가 가끔 함께 설치되는데 기본값이 단축키 사용이기 때문에 많은 사람들이 멘붕을 겪게 되는 것 같다. 해결하려면 단축키 사용안함으로 변경해주면 되겠지?</p>
+<h2 id="설정하기-전에…"><a href="#설정하기-전에…" class="headerlink" title="설정하기 전에…"></a>설정하기 전에…</h2><p>설정하기 전에 해야 할 것이 있다. 바로 화면을 원래대로 되돌려 놓는 것! 안 그러면 아까 말한대로 아이큐 테스트를 하고 있는 자신을 발견하게 될 것이다. 먼저 화면 회전 단축키가 동작하는 방식은 아래와 같다.</p>
+<ul>
+<li>Ctrl + Alt + 위 방향키 : 0도. <strong>평상시 화면</strong> 으로 설정한다.</li>
+<li>Ctrl + Alt + 아래 방향키 : 화면을 180도 회전한다.</li>
+<li>Ctrl + Alt + 왼쪽 방향키 : 화면을 270도 회전한다.</li>
+<li>Ctrl + Alt + 오른쪽 방향키 : 화면을 90도 회전한다.</li>
+</ul>
+<p>단축키가 동작하는 방식을 알게 되니 이러한 상황이 닥쳤을 때 무엇을 눌러야 하는지가 명확해졌다. 바로 <strong>Ctrl + Alt + 위 방향키</strong> 이다. 그럼 다시 원래 화면으로 돌아오고 다시는 이러한 일이 발생하지 않도록 단축키를 사용안함으로 설정하면된다.</p>
+<h2 id="화면-회전-단축키-사용안함"><a href="#화면-회전-단축키-사용안함" class="headerlink" title="화면 회전 단축키 사용안함"></a>화면 회전 단축키 사용안함</h2><p>작업표시줄 오른쪽 트레이에 그래픽 드라이버 아이콘이 있을 것이다. 지금 내 PC는 파란색의 모니터 모양인데, 설치된 버전마다 다를 수 있다. 마우스를 잠깐 올렸을 때 <code>Intel(R) HD Graphics Media Accelerator Driver</code> 라고 뜨는 아이콘을 찾으면 된다. <del>스냅샷 찍기 귀찮은데 말로 설명하려니 힘드네ㅋㅋㅋ</del></p>
+<p>아이콘에서 오른쪽 키를 눌러 <code>그래픽 옵션 -&gt; 바로 가기 키</code>가 사용으로 설정 되어있을 것인데, 이것을 사용안함으로 변경해주면 된다.</p>
+<h2 id="화면을-왜-돌릴까"><a href="#화면을-왜-돌릴까" class="headerlink" title="화면을 왜 돌릴까?"></a>화면을 왜 돌릴까?</h2><p>혹자는 <em>도대체 화면을 돌릴 일이 무엇이 있을까?</em> 하고 궁금해 할지도 모르겠다. 화면을 돌려쓰는 1인으로서 그 이유를 설명하고자 한다. 화면을 돌려 쓴다고 매번 고개를 꺾어 컴퓨터를 사용하는 거냐고 오해하지는 않았으면 좋겠다. 내 목도 소중하기 때문에…</p>
+<p>화면을 돌리는 이유는 모니터를 세로로 사용하기 위함이다. 와이드 모니터를 세로로 사용하면 거대한 탑이 눈 앞에 있는 것 같다. 모니터를 세워서 사용하는 것에 장점은 긴 문서를 읽는 것에 있다. 기존에 스크롤을 수 없이 돌려야했다면 세로로 사용할 경우 굳이 스크롤을 돌리지 않아도 한 눈에 문서가 보일 수 있다.</p>
+<p>특히 파일 하나의 적힌 줄 수가 길고 위 선언된 부분을 자주 봐야하는 개발자에게 위 아래로 긴 화면은 매우 유용하다. 여러 개의 창을 띄웠을 경우 좌우로 고개를 돌리는 것이 아니라 위 아래로 끄덕이면 되기 때문에 목에 무리도 덜 가는 것 같다.</p>
+<p>단 모니터가 세로로 회전되는 기능이 지원되야 한다. 그게 아니면 화면 회전 기능은 필요가 없는 것이지. 화면 회전으로 멘붕을 겪었던 분들이 이 글이 멘탈 회복에 도움이 되었으면 한다.</p>
+<hr>
+<h4 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h4><ul>
+<li><a href="http://opid.tistory.com/104" target="_blank" rel="noopener">http://opid.tistory.com/104</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#발생-이유"><span class="toc-number">1.</span> <span class="toc-text">발생 이유</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#설정하기-전에…"><span class="toc-number">2.</span> <span class="toc-text">설정하기 전에…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#화면-회전-단축키-사용안함"><span class="toc-number">3.</span> <span class="toc-text">화면 회전 단축키 사용안함</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#화면을-왜-돌릴까"><span class="toc-number">4.</span> <span class="toc-text">화면을 왜 돌릴까?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참조"><span class="toc-number">4.0.1.</span> <span class="toc-text">참조</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/how-to-rotate-screen-in-windows/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&text=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&is_video=false&description=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=모니터 화면 90도 회전시 해결 방법&body=Check out this article: http://dezang.github.io/how-to-rotate-screen-in-windows/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&title=모니터 화면 90도 회전시 해결 방법"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/how-to-rotate-screen-in-windows/&name=모니터 화면 90도 회전시 해결 방법&description=&lt;p&gt;윈도우에서 단축키를 누르다보면 가끔 &lt;code&gt;ctrl + alt + 방향키&lt;/code&gt;를 누르게 될 때가 있다. 그런데 갑자기 돌아가 버리는 화면. 자연스럽게 내 고개도 그 방향으로 꺾일 수 밖에 없다.ㅋㅋㅋ 잠깐만 고개를 꺾었을 뿐인데 피로가 순식간에 쌓이고, 마우스는 회전된 화면 덕분에 내가 원하는대로 움직이지도 않는다.ㅋㅋㅋ&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

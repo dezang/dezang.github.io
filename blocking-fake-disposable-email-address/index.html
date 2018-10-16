@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="글로벌 고객들을 대상으로 하는 서비스들은 이메일을 기준으로 하나의 계정을 만드는 정책으로 운영되고 있다. 내가 운영하는 서비스 또한 한 명이 여러개의 계정을 생성하는 것을 막기 위해 이메일 인증을 통해 계정을 인증하고 있었다. 그런데 가짜 임시 이메일 주소를 생성하여 무수히 많은 계정을 생성하는 악성 사용자들이 발견되었다. 계정 생성시 제공하는 보너스 포인">
+<meta name="keywords" content="email">
+<meta property="og:type" content="article">
+<meta property="og:title" content="가짜 임시 이메일 주소 차단하기">
+<meta property="og:url" content="http://dezang.github.io/blocking-fake-disposable-email-address/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="글로벌 고객들을 대상으로 하는 서비스들은 이메일을 기준으로 하나의 계정을 만드는 정책으로 운영되고 있다. 내가 운영하는 서비스 또한 한 명이 여러개의 계정을 생성하는 것을 막기 위해 이메일 인증을 통해 계정을 인증하고 있었다. 그런데 가짜 임시 이메일 주소를 생성하여 무수히 많은 계정을 생성하는 악성 사용자들이 발견되었다. 계정 생성시 제공하는 보너스 포인">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="가짜 임시 이메일 주소 차단하기">
+<meta name="twitter:description" content="글로벌 고객들을 대상으로 하는 서비스들은 이메일을 기준으로 하나의 계정을 만드는 정책으로 운영되고 있다. 내가 운영하는 서비스 또한 한 명이 여러개의 계정을 생성하는 것을 막기 위해 이메일 인증을 통해 계정을 인증하고 있었다. 그런데 가짜 임시 이메일 주소를 생성하여 무수히 많은 계정을 생성하는 악성 사용자들이 발견되었다. 계정 생성시 제공하는 보너스 포인">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>가짜 임시 이메일 주소 차단하기</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/collection-of-command-line-tools-installation/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/aws-ping-latency-check/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/blocking-fake-disposable-email-address/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/blocking-fake-disposable-email-address/&text=가짜 임시 이메일 주소 차단하기"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/blocking-fake-disposable-email-address/&is_video=false&description=가짜 임시 이메일 주소 차단하기"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=가짜 임시 이메일 주소 차단하기&body=Check out this article: http://dezang.github.io/blocking-fake-disposable-email-address/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/blocking-fake-disposable-email-address/&name=가짜 임시 이메일 주소 차단하기&description=&lt;p&gt;글로벌 고객들을 대상으로 하는 서비스들은 이메일을 기준으로 하나의 계정을 만드는 정책으로 운영되고 있다. 내가 운영하는 서비스 또한 한 명이 여러개의 계정을 생성하는 것을 막기 위해 이메일 인증을 통해 계정을 인증하고 있었다. 그런데 가짜 임시 이메일 주소를 생성하여 무수히 많은 계정을 생성하는 악성 사용자들이 발견되었다. 계정 생성시 제공하는 보너스 포인트 때문이였다. 자 이 녀석들을 막아보자.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#유료-API"><span class="toc-number">1.</span> <span class="toc-text">유료 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#공짜는-없을까"><span class="toc-number"></span> <span class="toc-text">공짜는 없을까?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#더-근본적인-해결-방법"><span class="toc-number"></span> <span class="toc-text">더 근본적인 해결 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number"></span> <span class="toc-text">마치며</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        가짜 임시 이메일 주소 차단하기
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-10-10T05:49:58.000Z" itemprop="datePublished">2016-10-10</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/email/">email</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>글로벌 고객들을 대상으로 하는 서비스들은 이메일을 기준으로 하나의 계정을 만드는 정책으로 운영되고 있다. 내가 운영하는 서비스 또한 한 명이 여러개의 계정을 생성하는 것을 막기 위해 이메일 인증을 통해 계정을 인증하고 있었다. 그런데 가짜 임시 이메일 주소를 생성하여 무수히 많은 계정을 생성하는 악성 사용자들이 발견되었다. 계정 생성시 제공하는 보너스 포인트 때문이였다. 자 이 녀석들을 막아보자.</p>
+<a id="more"></a>
+<p>어떤 것이든 필터링을 하기 위해서는 필터링할 기준이 되는 정보, 즉 리스트가 필요하다. 기준이 될 리스트가 만들어졌다면 이제 이 리스트에 있는 것만 허용할지 아니면, 이 리스트에 있는 것들을 제외할 지를 결정해야하는데 전자를 whitelist 후자를 blacklist라고 부른다. 뭐 이 정도는 누구나 알고 있는 사실일테고, 지금 나에게 주어진 업무는 <a href="http://www.ghacks.net/2012/05/31/the-ultimate-disposable-email-provider-list-2012/" target="_blank" rel="noopener">Disposable, Throwaway, Temporary, Fake 와 같은 단어로 서비스되는 임시 메일들</a> 을 차단하는 것이다.</p>
+<p>글로벌을 대상으로 하다보니 화이트리스트는 쉽지 않다. 나야 한국인이니 네이버, 네이트, 다음 메일을 화이트리스트에 추가해 놓을 수 있다하더라도, 내가 콩고, 호주, 이집트와 같은 나라에 있는 공신력있는 이메일 도메인을 알 수가 있나… 그렇다고 하늘같은 고객님께 <em>너님 구글이나 야후 메일은 있지? 그거 써!</em> 라고 강요할 수도 없고 결국엔 블랙리스트 밖에는 답이 없다는건데…</p>
+<p>이와 같은 고민을 가지고 있는 서비스들이 적지 않았는지 이미 이런 문제에 대한 솔루션을 제공하는 유료 API 서비스가 많이 존재했다.</p>
+<h3 id="유료-API"><a href="#유료-API" class="headerlink" title="유료 API"></a>유료 API</h3><ul>
+<li><a href="http://www.email-validator.net/block-fake-disposable-email-addresses.html" target="_blank" rel="noopener">유료 API/byteplant</a></li>
+<li><a href="http://www.block-disposable-email.com" target="_blank" rel="noopener">block-disposable-email</a></li>
+<li><a href="http://kickbox.io/" target="_blank" rel="noopener">http://kickbox.io/</a></li>
+<li><a href="http://blog.mashape.com/list-of-25-email-validation-apis/" target="_blank" rel="noopener">List of 25+ Email Validation APIs</a></li>
+</ul>
+<h2 id="공짜는-없을까"><a href="#공짜는-없을까" class="headerlink" title="공짜는 없을까?"></a>공짜는 없을까?</h2><p>하지만 비용을 최소한으로 해야 하는 스타트업인지라 비용이 들지 않고 해결할 수 있는 방법이 없을까 고민해 보았다. 그리고 찾은 또 다른 방법으로는 임시 이메일 주소 도메인들을 리스팅해서 이 도메인을 포함한 이메일을 차단하는 방법이다. 다행히도 지속적으로 <a href="https://gist.github.com/michenriksen/8710649" target="_blank" rel="noopener">가짜 임시 도메인들을 모아놓은 gist</a>가 존재했다.</p>
+<p>이 리스트들을 DB에 저장해놓고, 서비스 배포시 메모리에 이 도메인들을 올려놓고, 이메일에 리스트에 존재하는 도메인이 포함되어있다면 다른 이메일을 입력받도록 구현하였다.</p>
+<h2 id="더-근본적인-해결-방법"><a href="#더-근본적인-해결-방법" class="headerlink" title="더 근본적인 해결 방법"></a>더 근본적인 해결 방법</h2><p>이래저래 가짜 임시 이메일들을 막긴 했는데, 가짜 임시 이메일 서비스는 수시로 생기고 사라지고 있어서 근본적인 해결 방법이라고 볼 수는 없다. 더 근본적인 해결 방법은 무엇일까?</p>
+<p>내가 내린 결론은 계정을 많이 생성할 이유가 없도록 하는 것, 그리고 계정에 대한 아이덴티티를 더욱 강하게 가져가는 것이다. 새로운 계정을 생성했을 때의 이점보다는 기존 계정을 유지했을 때 더 많은 이점이 있도록 서비스를 개선하는 것이다. 우리가 페이스북 아이디를 무제한 생성하지 않는 이유는 그 계정의 가치가 나의 활동들에 있기 때문이다. 새로운 계정을 생성하는 것보다 기존 계정에서 활동을 더 활발히 하는게 이점이 크다.</p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>솔직히 이메일 인증 기능을 넣으면 한 사람당 최대 만들 수 있는 계정은 10개 미만일 거라고 생각했었다. 이메일을 새롭게 생성하는 건 상당히 귀찮은 일이니까. 그런데 가짜 임시 이메일을 통해 이렇게 쉽게 이메일 계정을 얻는 방법이 있을거라고는 예상하지 못했다. 추후에는 가짜 이메일 차단 솔루션을 도입하는 방안도 고려해봐야 할 듯하다.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#유료-API"><span class="toc-number">1.</span> <span class="toc-text">유료 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#공짜는-없을까"><span class="toc-number"></span> <span class="toc-text">공짜는 없을까?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#더-근본적인-해결-방법"><span class="toc-number"></span> <span class="toc-text">더 근본적인 해결 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number"></span> <span class="toc-text">마치며</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/blocking-fake-disposable-email-address/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/blocking-fake-disposable-email-address/&text=가짜 임시 이메일 주소 차단하기"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/blocking-fake-disposable-email-address/&is_video=false&description=가짜 임시 이메일 주소 차단하기"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=가짜 임시 이메일 주소 차단하기&body=Check out this article: http://dezang.github.io/blocking-fake-disposable-email-address/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/blocking-fake-disposable-email-address/&title=가짜 임시 이메일 주소 차단하기"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/blocking-fake-disposable-email-address/&name=가짜 임시 이메일 주소 차단하기&description=&lt;p&gt;글로벌 고객들을 대상으로 하는 서비스들은 이메일을 기준으로 하나의 계정을 만드는 정책으로 운영되고 있다. 내가 운영하는 서비스 또한 한 명이 여러개의 계정을 생성하는 것을 막기 위해 이메일 인증을 통해 계정을 인증하고 있었다. 그런데 가짜 임시 이메일 주소를 생성하여 무수히 많은 계정을 생성하는 악성 사용자들이 발견되었다. 계정 생성시 제공하는 보너스 포인트 때문이였다. 자 이 녀석들을 막아보자.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

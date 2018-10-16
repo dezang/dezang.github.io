@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="아마존은 이 포스팅을 작성하는 시점 기준으로 총 12개의 리전을 제공한다. 아무리 아키텍처의 최적화를 통해 서비스의 퍼포먼스를 개선한다고 해도 서버와 고객간의 물리적인 속도를 개선할 수 있는 방법은 오로지 고객과 서버와의 거리를 좁히는 방법 뿐이다. 따라서 AWS 인프라를 구성할 때 서비스의 고객의 국가를 고려하여 리전을 선택하고 해당 리전에 배포해야 한다">
+<meta name="keywords" content="latency">
+<meta property="og:type" content="article">
+<meta property="og:title" content="효율적인 AWS 리전별 속도 측정">
+<meta property="og:url" content="http://dezang.github.io/aws-ping-latency-check/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="아마존은 이 포스팅을 작성하는 시점 기준으로 총 12개의 리전을 제공한다. 아무리 아키텍처의 최적화를 통해 서비스의 퍼포먼스를 개선한다고 해도 서버와 고객간의 물리적인 속도를 개선할 수 있는 방법은 오로지 고객과 서버와의 거리를 좁히는 방법 뿐이다. 따라서 AWS 인프라를 구성할 때 서비스의 고객의 국가를 고려하여 리전을 선택하고 해당 리전에 배포해야 한다">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://lh3.googleusercontent.com/n1EuQ7IZhHyUIEZP8x-JOig0-K-8flU3jCg80f15kkXdsLifHXDwzEQqLnYBrdhoCNHgEu0GI6wsXENyAJafeDdj4QWcyrSDG0SJWP_UEWZmsqH295Ls7ugoAL67mKZq3GUM3io_WCvfhCAhEyaSU7iA0DSPD54KH1yk3n9GtCnkozGlQou2CIA1pxrfZ0ZEcmqJlqm3G72zbg0QE0C4Hb31iHbM20mpdyj64IWf1op3KDi97nv72XD9g2PUVIZMEsByMKZ4OBXBv9ye-wrtTIwPsKkujgli6RIQFGVOW2yone2UiFFUTFPzt4i41iE7pM6cAzBQROsobI_muPGUDuAHxxt4HAZCWZirJfUfQ7QTcJK1aWLUNnSZappQMt-dH90kkJ2HpRQXvLNoSW14Vw8yENSy84oC6gsOXo3CczRH-giEBCSQrmNCfYYvV0FeoomYRqZCdbqVOoMVug2i2NHVVw39rjXMJSCdlVcjnQWebPjvIWCLRUY0wG5RsJxnqotF-29Xh1uEjHzkJQ3XRBPPs8sTGIvNkRIEegDQL_FKviihgPSbYpj71oPrYy8pyGJzMLNfcK8b-0GJz7wMF3CaDCroUIYosps2LE2b_eWpfG_WOQ=w760-h577-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-CErLHEiB01pacpcN6LLbfVrqYEiZZ-nmA-IKg0X9aJi6688nxzylr7zP9CMeYrV0e8a_kwPfk3KUZ9VILeyVd6EShUBHsYOd1DQ5gSzEpJmiy3U1aaO27vYDXoKJi8LrSr1VU5VBZMRZVxy62NRbOqkypQSaEUttYUASAJVGi223sWG1hpLQ-jjSBfvWRGei5bx7BGgLhsRpSSNZD4utZr3nWllbJB909uWB8fpP4chbeIkno_WRvNsudtlU9nRoOW5f5PO-RdZNnfgGnwptDYG2Qq31U-x2t3NP8TjrxTIul5M0XFy0bYgdpK2Is3epZlmsh_spw2E2UCTeC11jbt5YQEWuecvmPt0c2_BTPXTGwvMZlBdCGlxvl_EptEqcOoqqIYCQwMNSLZ5BwNW7qLorA_WK5UJcXh0jW6ygJcZYL8Rc2rJpc_2-tGGcseOBibh7cPsaxgyqPZE6q4wXZ12fswnC0ksrV-ceFylIXT2At_mQx2lBGcfj7NJYhu9V3VBu_9MdIot30BAZ9TKmmHWbRbQX1zryt5JM7WzJMmeM9RjSY1AzvEZJyUEIc3-_A1Vfb5-N62WsspIM8l4WTmedPwhQkEwlLKGH3yFl1KBttur_g=w625-h551-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/0hSWXca-XbctB0VdxKI27EGphsfsvd3ZjvNQYFgJHGt0zJ5VR_fOYb3Z8CTQ9v42-BJ_LwGL8mEfxtl9kb5mCgpv7Qv_nMEVU-9gcRdSYlp3Yp_gKs2qUtfI4lGuxRjrKR3W7AdLyn0-KcY83bJaPXVnnd4DcMiHN3wv6ghkT8jQDwLNA-jE0kpFSsTfOunsMBGMbMeLoaRVeBVbgYNcUOD6ZQxtvVoThMxqzpr68AedSVD84Wx6OvIgDScCHLp31Ycti-1avL4R4xOFCncqbkopHZat43cqjen4VvQ5Ian8KwjD2nh6rRnx6sbnIcG9za_O1pYZY1e5ewfdT-c7vfqHkBnUyCtounUApWIVv64c4fxthRMFr9xJMLIWSoinK_3bmhqb8hbDv7O4HjdYTUKo_x21rOI6NT5fokUT1HLJ_Pia6Kr7vSHs2WKPLZmveqB5JfUVm6k0o3wkngpgCuV8ZvQfw5eN2ozgltA0tgnXT-M4r1eAy39mpyJcdxYt2fq8Co_RCUwBRLj3RG33mOrXJAj_CiNhAfUkvJU6DRs7s-G1buyodn32Fz-f7KKmwl8zVMugTU6SVOJnO0LV1QUK0DlRy6Kx6A38z7lHhQzRhxRcSQ=w1040-h553-no">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="효율적인 AWS 리전별 속도 측정">
+<meta name="twitter:description" content="아마존은 이 포스팅을 작성하는 시점 기준으로 총 12개의 리전을 제공한다. 아무리 아키텍처의 최적화를 통해 서비스의 퍼포먼스를 개선한다고 해도 서버와 고객간의 물리적인 속도를 개선할 수 있는 방법은 오로지 고객과 서버와의 거리를 좁히는 방법 뿐이다. 따라서 AWS 인프라를 구성할 때 서비스의 고객의 국가를 고려하여 리전을 선택하고 해당 리전에 배포해야 한다">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/n1EuQ7IZhHyUIEZP8x-JOig0-K-8flU3jCg80f15kkXdsLifHXDwzEQqLnYBrdhoCNHgEu0GI6wsXENyAJafeDdj4QWcyrSDG0SJWP_UEWZmsqH295Ls7ugoAL67mKZq3GUM3io_WCvfhCAhEyaSU7iA0DSPD54KH1yk3n9GtCnkozGlQou2CIA1pxrfZ0ZEcmqJlqm3G72zbg0QE0C4Hb31iHbM20mpdyj64IWf1op3KDi97nv72XD9g2PUVIZMEsByMKZ4OBXBv9ye-wrtTIwPsKkujgli6RIQFGVOW2yone2UiFFUTFPzt4i41iE7pM6cAzBQROsobI_muPGUDuAHxxt4HAZCWZirJfUfQ7QTcJK1aWLUNnSZappQMt-dH90kkJ2HpRQXvLNoSW14Vw8yENSy84oC6gsOXo3CczRH-giEBCSQrmNCfYYvV0FeoomYRqZCdbqVOoMVug2i2NHVVw39rjXMJSCdlVcjnQWebPjvIWCLRUY0wG5RsJxnqotF-29Xh1uEjHzkJQ3XRBPPs8sTGIvNkRIEegDQL_FKviihgPSbYpj71oPrYy8pyGJzMLNfcK8b-0GJz7wMF3CaDCroUIYosps2LE2b_eWpfG_WOQ=w760-h577-no">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>효율적인 AWS 리전별 속도 측정</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/blocking-fake-disposable-email-address/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/adduser-vs-useradd/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/aws-ping-latency-check/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/aws-ping-latency-check/&text=효율적인 AWS 리전별 속도 측정"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/aws-ping-latency-check/&is_video=false&description=효율적인 AWS 리전별 속도 측정"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=효율적인 AWS 리전별 속도 측정&body=Check out this article: http://dezang.github.io/aws-ping-latency-check/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/aws-ping-latency-check/&name=효율적인 AWS 리전별 속도 측정&description=&lt;p&gt;아마존은 이 포스팅을 작성하는 시점 기준으로 총 12개의 리전을 제공한다. 아무리 아키텍처의 최적화를 통해 서비스의 퍼포먼스를 개선한다고 해도 서버와 고객간의 물리적인 속도를 개선할 수 있는 방법은 오로지 고객과 서버와의 거리를 좁히는 방법 뿐이다. 따라서 AWS 인프라를 구성할 때 서비스의 고객의 국가를 고려하여 리전을 선택하고 해당 리전에 배포해야 한다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        효율적인 AWS 리전별 속도 측정
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-10-10T02:30:43.000Z" itemprop="datePublished">2016-10-10</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/latency/">latency</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>아마존은 이 포스팅을 작성하는 시점 기준으로 총 12개의 리전을 제공한다. 아무리 아키텍처의 최적화를 통해 서비스의 퍼포먼스를 개선한다고 해도 서버와 고객간의 물리적인 속도를 개선할 수 있는 방법은 오로지 고객과 서버와의 거리를 좁히는 방법 뿐이다. 따라서 AWS 인프라를 구성할 때 서비스의 고객의 국가를 고려하여 리전을 선택하고 해당 리전에 배포해야 한다.</p>
+<a id="more"></a>
+<p>아마존 리전에 있는 인스턴스와 내 컴퓨터와의 응답 속도를 측정하기 위해서는 간단히 ping 명령어를 사용하면 된다. 이를 위해서는 체크하고자 하는 리전에 ICMP 프로토콜에 접근을 허용한 인스턴스가 있어야 한다. 응답 속도 체크하자고 12개 리전에 인스턴스를 일일이 생성할 수는 없는 일. 아마존에서 공개한 서버가 있는 것 같긴한데 이를 위해 구글링 하는 것은 이 포스트의 목적에 벗어나기 때문에 넘어간다.</p>
+<p>다행히도 이런 번거로움을 해결해주는 사이트가 있다. 먼저 소개할 사이트는 <a href="http://www.cloudping.info/" target="_blank" rel="noopener">cloudping</a> 이다.</p>
+<p><img src="https://lh3.googleusercontent.com/n1EuQ7IZhHyUIEZP8x-JOig0-K-8flU3jCg80f15kkXdsLifHXDwzEQqLnYBrdhoCNHgEu0GI6wsXENyAJafeDdj4QWcyrSDG0SJWP_UEWZmsqH295Ls7ugoAL67mKZq3GUM3io_WCvfhCAhEyaSU7iA0DSPD54KH1yk3n9GtCnkozGlQou2CIA1pxrfZ0ZEcmqJlqm3G72zbg0QE0C4Hb31iHbM20mpdyj64IWf1op3KDi97nv72XD9g2PUVIZMEsByMKZ4OBXBv9ye-wrtTIwPsKkujgli6RIQFGVOW2yone2UiFFUTFPzt4i41iE7pM6cAzBQROsobI_muPGUDuAHxxt4HAZCWZirJfUfQ7QTcJK1aWLUNnSZappQMt-dH90kkJ2HpRQXvLNoSW14Vw8yENSy84oC6gsOXo3CczRH-giEBCSQrmNCfYYvV0FeoomYRqZCdbqVOoMVug2i2NHVVw39rjXMJSCdlVcjnQWebPjvIWCLRUY0wG5RsJxnqotF-29Xh1uEjHzkJQ3XRBPPs8sTGIvNkRIEegDQL_FKviihgPSbYpj71oPrYy8pyGJzMLNfcK8b-0GJz7wMF3CaDCroUIYosps2LE2b_eWpfG_WOQ=w760-h577-no" alt="cloudping"></p>
+<p>하단에 위치한 HTTP Ping 버튼을 누르면 모든 리전에 한번씩 Ping을 보내 응답 속도를 체크해준다. 대장은 한국에 살고 있기 때문에 서울 리전에 속도가 가장 빠르다. 반응 속도는 항상 일정한 것이 아니기 때문에 속도는 매번 랜덤하지만 대충 엇비슷하게 나온다. 더 정확도를 높히고 싶다면 여러 번의 핑을 날려보고 평균값을 확인하는 것이 좋다.</p>
+<p>클라우드핑의 문제점은 내가 위치한 곳을 기준으로 한 응답 속도만 체크할 수 있다는 점이다. 만약 프랑스에서 서비스하는 제품이라면 한국에서 반응 속도가 빠른 리전은 그다지 필요치 않다. 이를 해결하기 위해서는 Proxy 서비스를 이용해서 해당 국가로 프록시하여 체크하는 방법이 있는데 번거롭다. 이런 불편함을 위해서 국내 기업인 <a href="http://cloudping.mobilfactory.co.kr/" target="_blank" rel="noopener">mobilfactory 에서 만든 웹사이트</a>가 있다.</p>
+<p><img src="https://lh3.googleusercontent.com/-CErLHEiB01pacpcN6LLbfVrqYEiZZ-nmA-IKg0X9aJi6688nxzylr7zP9CMeYrV0e8a_kwPfk3KUZ9VILeyVd6EShUBHsYOd1DQ5gSzEpJmiy3U1aaO27vYDXoKJi8LrSr1VU5VBZMRZVxy62NRbOqkypQSaEUttYUASAJVGi223sWG1hpLQ-jjSBfvWRGei5bx7BGgLhsRpSSNZD4utZr3nWllbJB909uWB8fpP4chbeIkno_WRvNsudtlU9nRoOW5f5PO-RdZNnfgGnwptDYG2Qq31U-x2t3NP8TjrxTIul5M0XFy0bYgdpK2Is3epZlmsh_spw2E2UCTeC11jbt5YQEWuecvmPt0c2_BTPXTGwvMZlBdCGlxvl_EptEqcOoqqIYCQwMNSLZ5BwNW7qLorA_WK5UJcXh0jW6ygJcZYL8Rc2rJpc_2-tGGcseOBibh7cPsaxgyqPZE6q4wXZ12fswnC0ksrV-ceFylIXT2At_mQx2lBGcfj7NJYhu9V3VBu_9MdIot30BAZ9TKmmHWbRbQX1zryt5JM7WzJMmeM9RjSY1AzvEZJyUEIc3-_A1Vfb5-N62WsspIM8l4WTmedPwhQkEwlLKGH3yFl1KBttur_g=w625-h551-no" alt="mobilfactory&#39;s cloudping"></p>
+<p>디자인은 cloudping과 비슷하나 3번의 핑을 날려 평균값을 구해준다. 2개의 리전이 빠져있지만 베이징의 경우 어짜피 중국인이 아니면 사용할 수 없고 Mumbai 도 마찬가지이지 않을까 예상된다. 또 하나의 장점은 각 지역별 응답 속도 통계를 제공해준다는 점이다. <code>Show Statistics</code> 버튼을 누르면 아래와 같은 화면을 볼 수 있다.</p>
+<p><img src="https://lh3.googleusercontent.com/0hSWXca-XbctB0VdxKI27EGphsfsvd3ZjvNQYFgJHGt0zJ5VR_fOYb3Z8CTQ9v42-BJ_LwGL8mEfxtl9kb5mCgpv7Qv_nMEVU-9gcRdSYlp3Yp_gKs2qUtfI4lGuxRjrKR3W7AdLyn0-KcY83bJaPXVnnd4DcMiHN3wv6ghkT8jQDwLNA-jE0kpFSsTfOunsMBGMbMeLoaRVeBVbgYNcUOD6ZQxtvVoThMxqzpr68AedSVD84Wx6OvIgDScCHLp31Ycti-1avL4R4xOFCncqbkopHZat43cqjen4VvQ5Ian8KwjD2nh6rRnx6sbnIcG9za_O1pYZY1e5ewfdT-c7vfqHkBnUyCtounUApWIVv64c4fxthRMFr9xJMLIWSoinK_3bmhqb8hbDv7O4HjdYTUKo_x21rOI6NT5fokUT1HLJ_Pia6Kr7vSHs2WKPLZmveqB5JfUVm6k0o3wkngpgCuV8ZvQfw5eN2ozgltA0tgnXT-M4r1eAy39mpyJcdxYt2fq8Co_RCUwBRLj3RG33mOrXJAj_CiNhAfUkvJU6DRs7s-G1buyodn32Fz-f7KKmwl8zVMugTU6SVOJnO0LV1QUK0DlRy6Kx6A38z7lHhQzRhxRcSQ=w1040-h553-no" alt="show Statistics"></p>
+<p>만약 프랑스와 같은 유럽권에 서비스하고 싶다면 통계표를 통해 Ireland나 Frankfurt 리전에서 서비스하면 비교적 빠른 응답 속도를 기대할 수 있을 것이라 예상할 수 있다.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/aws-ping-latency-check/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/aws-ping-latency-check/&text=효율적인 AWS 리전별 속도 측정"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/aws-ping-latency-check/&is_video=false&description=효율적인 AWS 리전별 속도 측정"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=효율적인 AWS 리전별 속도 측정&body=Check out this article: http://dezang.github.io/aws-ping-latency-check/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/aws-ping-latency-check/&title=효율적인 AWS 리전별 속도 측정"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/aws-ping-latency-check/&name=효율적인 AWS 리전별 속도 측정&description=&lt;p&gt;아마존은 이 포스팅을 작성하는 시점 기준으로 총 12개의 리전을 제공한다. 아무리 아키텍처의 최적화를 통해 서비스의 퍼포먼스를 개선한다고 해도 서버와 고객간의 물리적인 속도를 개선할 수 있는 방법은 오로지 고객과 서버와의 거리를 좁히는 방법 뿐이다. 따라서 AWS 인프라를 구성할 때 서비스의 고객의 국가를 고려하여 리전을 선택하고 해당 리전에 배포해야 한다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

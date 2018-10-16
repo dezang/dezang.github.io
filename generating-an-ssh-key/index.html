@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="SSH 키 생성하고 생성된 SSH키를 등록하고 사용하는 방법을 설명한다.">
+<meta name="keywords" content="ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH 키 생성, 등록, 사용 방법">
+<meta property="og:url" content="http://dezang.github.io/generating-an-ssh-key/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="SSH 키 생성하고 생성된 SSH키를 등록하고 사용하는 방법을 설명한다.">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSH 키 생성, 등록, 사용 방법">
+<meta name="twitter:description" content="SSH 키 생성하고 생성된 SSH키를 등록하고 사용하는 방법을 설명한다.">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>SSH 키 생성, 등록, 사용 방법</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/gs-sublime-text/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/english-word-policy-in-blog/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/generating-an-ssh-key/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/generating-an-ssh-key/&text=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/generating-an-ssh-key/&is_video=false&description=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SSH 키 생성, 등록, 사용 방법&body=Check out this article: http://dezang.github.io/generating-an-ssh-key/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/generating-an-ssh-key/&name=SSH 키 생성, 등록, 사용 방법&description=&lt;p&gt;SSH 키 생성하고 생성된 SSH키를 등록하고 사용하는 방법을 설명한다.&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#키-확인"><span class="toc-number">1.</span> <span class="toc-text">키 확인</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#새로운-SSH-키-생성"><span class="toc-number">2.</span> <span class="toc-text">새로운 SSH 키 생성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-에이전트에-생성한-SSH-키-등록"><span class="toc-number">3.</span> <span class="toc-text">SSH 에이전트에 생성한 SSH 키 등록</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-에이전트-확인"><span class="toc-number">3.1.</span> <span class="toc-text">SSH 에이전트 확인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#키-등록"><span class="toc-number">3.2.</span> <span class="toc-text">키 등록</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-키-사용"><span class="toc-number">4.</span> <span class="toc-text">SSH 키 사용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#github"><span class="toc-number">4.1.</span> <span class="toc-text">github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bitbucket"><span class="toc-number">4.2.</span> <span class="toc-text">bitbucket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu-server"><span class="toc-number">4.3.</span> <span class="toc-text">ubuntu server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">4.3.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        SSH 키 생성, 등록, 사용 방법
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-15T04:07:05.926Z" itemprop="datePublished">2018-10-15</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ssh/">ssh</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>SSH 키 생성하고 생성된 SSH키를 등록하고 사용하는 방법을 설명한다.</p>
+<a id="more"></a>
+<h2 id="키-확인"><a href="#키-확인" class="headerlink" title="키 확인"></a>키 확인</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls -al ~/.ssh</span><br></pre></td></tr></table></figure>
+<h2 id="새로운-SSH-키-생성"><a href="#새로운-SSH-키-생성" class="headerlink" title="새로운 SSH 키 생성"></a>새로운 SSH 키 생성</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">"dezang@dezang.net"</span></span><br></pre></td></tr></table></figure>
+<h2 id="SSH-에이전트에-생성한-SSH-키-등록"><a href="#SSH-에이전트에-생성한-SSH-키-등록" class="headerlink" title="SSH 에이전트에 생성한 SSH 키 등록"></a>SSH 에이전트에 생성한 SSH 키 등록</h2><h3 id="SSH-에이전트-확인"><a href="#SSH-에이전트-확인" class="headerlink" title="SSH 에이전트 확인"></a>SSH 에이전트 확인</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span><br><span class="line"></span><br><span class="line">Agent pid 27986</span><br></pre></td></tr></table></figure>
+<p>실행되고 있지 않고 있다면, 아래 명령어로 실행<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-agent /bin/bash</span><br></pre></td></tr></table></figure></p>
+<h3 id="키-등록"><a href="#키-등록" class="headerlink" title="키 등록"></a>키 등록</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-add ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line"><span class="comment"># 등록된 키 확인</span></span><br><span class="line">$ ssh-add -l</span><br><span class="line"></span><br><span class="line">4096 SHA256:7ocRRpWHQxRSRqsco//QuxhIE74U3dPlQfWvnDikzN8 /Users/dezang/.ssh/id_rsa (RSA)</span><br></pre></td></tr></table></figure>
+<h2 id="SSH-키-사용"><a href="#SSH-키-사용" class="headerlink" title="SSH 키 사용"></a>SSH 키 사용</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pbcopy &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><p>키 등록 후 …</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line"></span><br><span class="line">Hi dezang! You\<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
+<h3 id="bitbucket"><a href="#bitbucket" class="headerlink" title="bitbucket"></a>bitbucket</h3><p>키 등록 후 …<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@bitbucket.org                                                </span><br><span class="line">logged <span class="keyword">in</span> as Dezang.</span><br><span class="line"></span><br><span class="line">You can use git or hg to connect to Bitbucket. Shell access is disabled.</span><br></pre></td></tr></table></figure></p>
+<h3 id="ubuntu-server"><a href="#ubuntu-server" class="headerlink" title="ubuntu server"></a>ubuntu server</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir ~/.ssh</span><br><span class="line">$ vim ~/.ssh/authorized_keys</span><br><span class="line"><span class="comment"># 해당 파일에 public 키 정보를 붙여넣는다.</span></span><br></pre></td></tr></table></figure>
+<h4 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h4><ul>
+<li><a href="https://help.github.com/articles/generating-an-ssh-key/" target="_blank" rel="noopener">https://help.github.com/articles/generating-an-ssh-key/</a></li>
+<li><a href="https://confluence.atlassian.com/bitbucket/set-up-git-744723531.html" target="_blank" rel="noopener">https://confluence.atlassian.com/bitbucket/set-up-git-744723531.html</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#키-확인"><span class="toc-number">1.</span> <span class="toc-text">키 확인</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#새로운-SSH-키-생성"><span class="toc-number">2.</span> <span class="toc-text">새로운 SSH 키 생성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-에이전트에-생성한-SSH-키-등록"><span class="toc-number">3.</span> <span class="toc-text">SSH 에이전트에 생성한 SSH 키 등록</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-에이전트-확인"><span class="toc-number">3.1.</span> <span class="toc-text">SSH 에이전트 확인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#키-등록"><span class="toc-number">3.2.</span> <span class="toc-text">키 등록</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-키-사용"><span class="toc-number">4.</span> <span class="toc-text">SSH 키 사용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#github"><span class="toc-number">4.1.</span> <span class="toc-text">github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bitbucket"><span class="toc-number">4.2.</span> <span class="toc-text">bitbucket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu-server"><span class="toc-number">4.3.</span> <span class="toc-text">ubuntu server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">4.3.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/generating-an-ssh-key/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/generating-an-ssh-key/&text=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/generating-an-ssh-key/&is_video=false&description=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SSH 키 생성, 등록, 사용 방법&body=Check out this article: http://dezang.github.io/generating-an-ssh-key/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/generating-an-ssh-key/&title=SSH 키 생성, 등록, 사용 방법"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/generating-an-ssh-key/&name=SSH 키 생성, 등록, 사용 방법&description=&lt;p&gt;SSH 키 생성하고 생성된 SSH키를 등록하고 사용하는 방법을 설명한다.&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="오랜 기간동안 Sublime Text(이하 서브라임) 를 사용해오다가 얼마 전부터 Atom(이하 아톰)으로 갈아탔다. VSCode 중에 무엇을 주력 텍스트 에디터로 사용할지 고민하였으나 일단 아톰을 손에 익히기로 결정했다. Github 와의 더 깊은 유대감을 만드고 싶기도 했고 응? 이게 무슨 상관?ㅋㅋㅋ">
+<meta name="keywords" content="atom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atom 에디터에서 나만의 Snippet 만들기">
+<meta property="og:url" content="http://dezang.github.io/create-custom-snippet-in-atom/index.html">
+<meta property="og:site_name" content="DZBlog">
+<meta property="og:description" content="오랜 기간동안 Sublime Text(이하 서브라임) 를 사용해오다가 얼마 전부터 Atom(이하 아톰)으로 갈아탔다. VSCode 중에 무엇을 주력 텍스트 에디터로 사용할지 고민하였으나 일단 아톰을 손에 익히기로 결정했다. Github 와의 더 깊은 유대감을 만드고 싶기도 했고 응? 이게 무슨 상관?ㅋㅋㅋ">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://lh3.googleusercontent.com/ckaSBVO0lLLBidbjcLV36ub_k-31uAOitMUZnV5raRdSLeGlUyxSgHFYGCUqKma9lq3OU7GbLztUfCEI2ogy5iINIb7XcBdgOf9xRBpWUgjgNHscONg7z2B8LvK_PQGR74j0hAOShpIuDgbYZezrOlKhN1PYWTpTdwJgOvaBbbQrEozLaSJZg4r9NSdBjOWZ0iFDxbEN5XAnh2vP3CsNPT1bnSVvEtRrh0Jj6JzdM5XZDHiHO2zApdq9QgIOxTSlq2l7IPZmT8FR9bUCKKOR4qEWZdlHWQnAMIJSGls3gbGqZrzdQUxJa7d3K6TnhxhtlVlGvkuzw0lmajQ4IhNhKhoZ783Lh2YtmNsZAqYczl9BkLu2_T1jOC1PNDSkV60gl_4TwW9DQhhDZ-FHz6cT2HXA1CaIUG6h-m3C0u3IAY2ACMn6YIVFeU7NBO3K71FEavIMsaaROCoi5gg4yXzhBChiCboW7TwwWs7sSWqMf85j8FIllWA5y9EK4yQ0DBRzO3WUinwyJgKUhjrBup_2lfKbt-v-R9vhD-iFUY3hCUy8aEZ00RqEgmtOUSs4lcAwsbv5-YZKbf3TI66X1lBdbbCjBvB7Cb6a7dMpLm1aqYEwbx95=w605-h307-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/a6ZCFLiQrIHQPTirCWFOWBlqMl2-Z8evk3M6KZQWrFDP7Ap7W6_uqLP5Rp1EGtJswnL1hRifkjli2wqIw2hcgQfDsYIH1Mkwm7ML_dYhmZpLY828ErTPUL2xIW8xukFape83ATywjvTSXL5YxcXrA2xvjk7bfO-PG0uN03YJ9zgdCXECpZ5MPKjwiNUKOz8FQYXWoq0HtJDdFNlliWYDlHNObCWLAWxAyAGViVM4wKF3UU0JcTSqGT7s0B3sirhye3jwvf0sI4NviR4ncWAGXNr7cLu6jLkboiAiNvwWSk1SFKZojpHszuNDE9GCLEl9iHtdxfl8aCWZfKPGzv7wII3y0BBmiNfN2auhuDyDP3uW5S8eiqYOA1k2A1BRTRkwgLYYvmDwfGDLPYrcKxV3Ze0yHQoBvg5HsIDI8ald1XeVUM-FU88r9f5G32ja9f6pCDwbHkUUnZVSy7vD5XPRo0Xx5MPWX0myIa8YdNYdnqX2jmeszydvrRDSGf83ybzI5jqLr_gbYyK-HiINdWzzn9zW5tf1-pqcH-FxGNL_Pp7rNW-DV_69U3lqg0hy2d9uQLOg_HlBMBrUNjpMYMbEZF_ITeB7pi2th2CrRQUt0ax8mSXB=w571-h219-no">
+<meta property="og:updated_time" content="2018-10-15T04:07:05.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atom 에디터에서 나만의 Snippet 만들기">
+<meta name="twitter:description" content="오랜 기간동안 Sublime Text(이하 서브라임) 를 사용해오다가 얼마 전부터 Atom(이하 아톰)으로 갈아탔다. VSCode 중에 무엇을 주력 텍스트 에디터로 사용할지 고민하였으나 일단 아톰을 손에 익히기로 결정했다. Github 와의 더 깊은 유대감을 만드고 싶기도 했고 응? 이게 무슨 상관?ㅋㅋㅋ">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/ckaSBVO0lLLBidbjcLV36ub_k-31uAOitMUZnV5raRdSLeGlUyxSgHFYGCUqKma9lq3OU7GbLztUfCEI2ogy5iINIb7XcBdgOf9xRBpWUgjgNHscONg7z2B8LvK_PQGR74j0hAOShpIuDgbYZezrOlKhN1PYWTpTdwJgOvaBbbQrEozLaSJZg4r9NSdBjOWZ0iFDxbEN5XAnh2vP3CsNPT1bnSVvEtRrh0Jj6JzdM5XZDHiHO2zApdq9QgIOxTSlq2l7IPZmT8FR9bUCKKOR4qEWZdlHWQnAMIJSGls3gbGqZrzdQUxJa7d3K6TnhxhtlVlGvkuzw0lmajQ4IhNhKhoZ783Lh2YtmNsZAqYczl9BkLu2_T1jOC1PNDSkV60gl_4TwW9DQhhDZ-FHz6cT2HXA1CaIUG6h-m3C0u3IAY2ACMn6YIVFeU7NBO3K71FEavIMsaaROCoi5gg4yXzhBChiCboW7TwwWs7sSWqMf85j8FIllWA5y9EK4yQ0DBRzO3WUinwyJgKUhjrBup_2lfKbt-v-R9vhD-iFUY3hCUy8aEZ00RqEgmtOUSs4lcAwsbv5-YZKbf3TI66X1lBdbbCjBvB7Cb6a7dMpLm1aqYEwbx95=w605-h307-no">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Atom 에디터에서 나만의 Snippet 만들기</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/english-word-policy-in-blog/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/kosscon-2016-review/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/create-custom-snippet-in-atom/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/create-custom-snippet-in-atom/&text=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/create-custom-snippet-in-atom/&is_video=false&description=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Atom 에디터에서 나만의 Snippet 만들기&body=Check out this article: http://dezang.github.io/create-custom-snippet-in-atom/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/create-custom-snippet-in-atom/&name=Atom 에디터에서 나만의 Snippet 만들기&description=&lt;p&gt;오랜 기간동안 Sublime Text(이하 서브라임) 를 사용해오다가 얼마 전부터 Atom(이하 아톰)으로 갈아탔다. VSCode 중에 무엇을 주력 텍스트 에디터로 사용할지 고민하였으나 일단 아톰을 손에 익히기로 결정했다. Github 와의 더 깊은 유대감을 만드고 싶기도 했고 &lt;del&gt;응? 이게 무슨 상관?ㅋㅋㅋ&lt;/del&gt;&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#스니펫-설정-파일-열기"><span class="toc-number">1.</span> <span class="toc-text">스니펫 설정 파일 열기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#스니펫의-동작-범위-Scope"><span class="toc-number">2.</span> <span class="toc-text">스니펫의 동작 범위, Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#본격적인-스니펫-작성"><span class="toc-number">3.</span> <span class="toc-text">본격적인 스니펫 작성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#스니펫-사용"><span class="toc-number">4.</span> <span class="toc-text">스니펫 사용</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number">5.</span> <span class="toc-text">마치며</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">5.0.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Atom 에디터에서 나만의 Snippet 만들기
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">DZBlog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-15T04:07:05.925Z" itemprop="datePublished">2018-10-15</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/atom/">atom</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>오랜 기간동안 Sublime Text(이하 서브라임) 를 사용해오다가 얼마 전부터 Atom(이하 아톰)으로 갈아탔다. VSCode 중에 무엇을 주력 텍스트 에디터로 사용할지 고민하였으나 일단 아톰을 손에 익히기로 결정했다. Github 와의 더 깊은 유대감을 만드고 싶기도 했고 <del>응? 이게 무슨 상관?ㅋㅋㅋ</del></p>
+<a id="more"></a>
+<p>따라서 지금 작성되는 포스트 또한 아톰으로 작성되고 있다. 그런데 Hexo 내 포스트들은 YAML 형식으로 된 공통적으로 들어가야만 하는 부분이 있다.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">효율적인</span> <span class="string">AWS</span> <span class="string">리전별</span> <span class="string">속도</span> <span class="string">측정</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">aws</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">latency</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>모든 글들은 위와 같은 데이터 블럭을 가져야 하는데, 터미널에서 <code>hexo new &#39;POST_TITLE&#39;</code> 명령어를 치면 자동적으로 파일을 생성해주지만 보통 바로 아톰을 열어서 글을 작성하기 마련이다. 그러면 항상 저 공통 부분을 작성해야 하는데 이게 상당히 귀찮다. 이 귀차니즘을 해결해주는게 바로 스니펫 기능이다. 스니펫은 들어봤을거라고 생각하고 작성법부터 알아보자.</p>
+<h2 id="스니펫-설정-파일-열기"><a href="#스니펫-설정-파일-열기" class="headerlink" title="스니펫 설정 파일 열기"></a>스니펫 설정 파일 열기</h2><p>커스텀 스니펫 파일의 위치는 <code>~/.atom/snippets.cson</code> 이다. 이 파일을 수정해줘야 한다. 직접 경로에 들어가서 열어줘도 되지만 아톰에서 바로 열 수 있다. 메뉴바에 <code>Atom -&gt; snippets...</code> 을 선택하면 된다. 그런데 이렇게 마우스 클릭질하자고 아톰쓰는거 아니자나? <code>Cmd + Shift + P</code> 를 눌러 커맨드 팔레트를 연다. <code>Application: Open Your Snippets</code> 를 입력하면 스니펫 설정 파일이 열린다.</p>
+<p>잠깐 지금 저거 다 입력한 것은 아니겠지? 그건 커맨드 팔레트를 무시하는 행위다. 난 <code>app oys</code> 라고 입력하기로 정했다. 대략적인 알파벳을 순서에 맞게 입력해주면 해당하는 명령어 알아서 찾아준다. 이 맛에 서브라임이나 아톰 쓰는거 아니겠나. 파일을 열면 아래와 같은 문서가 보일 것이다.</p>
+<figure class="highlight cson"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your snippets</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Atom snippets allow you to enter a simple prefix in the editor and hit tab to</span></span><br><span class="line"><span class="comment"># expand the prefix into a larger code block with templated values.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You can create a new snippet in this file by typing "snip" and then hitting</span></span><br><span class="line"><span class="comment"># tab.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># An example CoffeeScript snippet to expand log to console.log:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># '.source.coffee':</span></span><br><span class="line"><span class="comment">#   'Console log':</span></span><br><span class="line"><span class="comment">#     'prefix': 'log'</span></span><br><span class="line"><span class="comment">#     'body': 'console.log $1'</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Each scope (e.g. '.source.coffee' above) can only be declared once.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This file uses CoffeeScript Object Notation (CSON).</span></span><br><span class="line"><span class="comment"># If you are unfamiliar with CSON, you can read more about it in the</span></span><br><span class="line"><span class="comment"># Atom Flight Manual:</span></span><br><span class="line"><span class="comment"># https://atom.io/docs/latest/using-atom-basic-customization#cson</span></span><br></pre></td></tr></table></figure>
+<p>자 이제 차근차근 이 문서를 수정해보자.</p>
+<h2 id="스니펫의-동작-범위-Scope"><a href="#스니펫의-동작-범위-Scope" class="headerlink" title="스니펫의 동작 범위, Scope"></a>스니펫의 동작 범위, Scope</h2><p>스니펫은 어디서나 동작하는게 아니라, 그 문서의 Syntax에 따라 동작한다. 주석처리되어 보여주는 위 예제의 경우 <code>.source.coffee:</code>라고 적힌 부분이 스코프의 선언이다. 따라서 저 스니펫은 CoffeeScript 문서에서만 사용할 수 있다. 문서의 형식은 아톰 하단에 적혀있다.</p>
+<p><img src="https://lh3.googleusercontent.com/ckaSBVO0lLLBidbjcLV36ub_k-31uAOitMUZnV5raRdSLeGlUyxSgHFYGCUqKma9lq3OU7GbLztUfCEI2ogy5iINIb7XcBdgOf9xRBpWUgjgNHscONg7z2B8LvK_PQGR74j0hAOShpIuDgbYZezrOlKhN1PYWTpTdwJgOvaBbbQrEozLaSJZg4r9NSdBjOWZ0iFDxbEN5XAnh2vP3CsNPT1bnSVvEtRrh0Jj6JzdM5XZDHiHO2zApdq9QgIOxTSlq2l7IPZmT8FR9bUCKKOR4qEWZdlHWQnAMIJSGls3gbGqZrzdQUxJa7d3K6TnhxhtlVlGvkuzw0lmajQ4IhNhKhoZ783Lh2YtmNsZAqYczl9BkLu2_T1jOC1PNDSkV60gl_4TwW9DQhhDZ-FHz6cT2HXA1CaIUG6h-m3C0u3IAY2ACMn6YIVFeU7NBO3K71FEavIMsaaROCoi5gg4yXzhBChiCboW7TwwWs7sSWqMf85j8FIllWA5y9EK4yQ0DBRzO3WUinwyJgKUhjrBup_2lfKbt-v-R9vhD-iFUY3hCUy8aEZ00RqEgmtOUSs4lcAwsbv5-YZKbf3TI66X1lBdbbCjBvB7Cb6a7dMpLm1aqYEwbx95=w605-h307-no" alt="문서형식확인"></p>
+<p>내가 글을 작성하고 있는 이 문서는 <code>Github Markdown</code> 형식이라는 거다. 저기 누르면 언어를 선택할 수 있다. 그러면 선택한 언어로 문서를 인식한다. 보통 파일 확장자를 가지고 자동으로 어떤 문서인지 인지한다. 하지만 아직 파일명을 정하지 않았다면 저곳을 선택해 변경할 수 있다. 그렇다고 <code>.source.coffee:</code> 부분에 저기에 보이는 문자를 그대로 입력하면 안된다. 정확한 스코프명이 있다. 이는 커맨드 팔레트에 <code>Log Cursor Scope</code>라고 입력하거나 <code>Cmd + Opt + P</code>를 눌러 확인하면 된다. 그러면 에디터 우측 상단에 스코프명이 뜬다.</p>
+<p><img src="https://lh3.googleusercontent.com/a6ZCFLiQrIHQPTirCWFOWBlqMl2-Z8evk3M6KZQWrFDP7Ap7W6_uqLP5Rp1EGtJswnL1hRifkjli2wqIw2hcgQfDsYIH1Mkwm7ML_dYhmZpLY828ErTPUL2xIW8xukFape83ATywjvTSXL5YxcXrA2xvjk7bfO-PG0uN03YJ9zgdCXECpZ5MPKjwiNUKOz8FQYXWoq0HtJDdFNlliWYDlHNObCWLAWxAyAGViVM4wKF3UU0JcTSqGT7s0B3sirhye3jwvf0sI4NviR4ncWAGXNr7cLu6jLkboiAiNvwWSk1SFKZojpHszuNDE9GCLEl9iHtdxfl8aCWZfKPGzv7wII3y0BBmiNfN2auhuDyDP3uW5S8eiqYOA1k2A1BRTRkwgLYYvmDwfGDLPYrcKxV3Ze0yHQoBvg5HsIDI8ald1XeVUM-FU88r9f5G32ja9f6pCDwbHkUUnZVSy7vD5XPRo0Xx5MPWX0myIa8YdNYdnqX2jmeszydvrRDSGf83ybzI5jqLr_gbYyK-HiINdWzzn9zW5tf1-pqcH-FxGNL_Pp7rNW-DV_69U3lqg0hy2d9uQLOg_HlBMBrUNjpMYMbEZF_ITeB7pi2th2CrRQUt0ax8mSXB=w571-h219-no" alt="스코프명 확인"></p>
+<p>만약 다른 문서 형식에 스코프를 만들겠다면 위에 설명한 방식으로 확인하면 된다. 잠깐, 문서 형식을 변경할 때 또 마우스 커서를 움직이려고 하진 않았겠지? 단축키는 <code>Ctrl + Shift + L</code> 이다. 자주 쓰일 단축키니 숙지하자.</p>
+<h2 id="본격적인-스니펫-작성"><a href="#본격적인-스니펫-작성" class="headerlink" title="본격적인 스니펫 작성"></a>본격적인 스니펫 작성</h2><p>아까 그 예제를 다시 한번 살펴보자.</p>
+<figure class="highlight cson"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># '.source.coffee':</span></span><br><span class="line"><span class="comment">#   'Console log':</span></span><br><span class="line"><span class="comment">#     'prefix': 'log'</span></span><br><span class="line"><span class="comment">#     'body': 'console.log $1'</span></span><br></pre></td></tr></table></figure>
+<p>첫번째 줄은 작성하는 스니펫이 동작할 스코프를 선언하는 부분이라는 것은 앞서 말했고, 그 다음은 스티펫의 이름이다. 알아보기 쉽게 적도록 하자. 나는 새로운 포스트를 만들 때 사용할 스니펫이 필요하므로 <code>New Post</code>로 정했다.</p>
+<p>세번째 줄은 <strong>prefix</strong> 로 스니펫을 불러올 축약어인데 이는 사용하고 쉽도록 정하자. 그렇다고 너무 짧게 정해버리면 무심코 누른 Tab에 스니펫이 불러와지는 불상사가 일어날 수 있으니 조심하자. 나는 <code>npost</code>로 정했다.</p>
+<p>네번째 줄부터 본격적인 <strong>body</strong> 가 시작된다. 축약어를 입력하고 탭을 눌렀을 때 입력된 문자들을 입력하면 된다. 한 줄의 경우 위 예제와 같이 싱글쿼터로 감싸주면 되는데, 여러 줄일 경우 싱글쿼터 세개로 감싸줘야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">요 안에 여러줄 문자 넣기!</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>또한 <code>$1</code>,<code>$2</code> 로 위치를 지정하면 문자 입력 후 탭을 누르면 다음 번호 위치로 자동으로 이동한다. <code>$1:PlaceHolder</code> 처럼 작성할 수도 있다. 아래는 이러한 작성 규칙을 지키며 내가 작성한 스니펫이다.</p>
+<figure class="highlight cson"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'.source.gfm'</span>:</span><br><span class="line">  <span class="string">'New Post'</span>:</span><br><span class="line">    <span class="string">'prefix'</span>: <span class="string">'npost'</span></span><br><span class="line">    <span class="string">'body'</span>: <span class="string">"""</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    title: $&#123;1:title&#125;</span></span><br><span class="line"><span class="string">    categories: $2</span></span><br><span class="line"><span class="string">    tags: $3</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;!-- more --&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    ----</span></span><br><span class="line"><span class="string">    #### 참고</span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<h2 id="스니펫-사용"><a href="#스니펫-사용" class="headerlink" title="스니펫 사용"></a>스니펫 사용</h2><p>나만의 스니펫을 사용하기 위한 모든 설정이 끝났다. 이제 마크다운 문서에서 <code>npost</code>를 입력 후 탭을 누르면 내가 지금까지 지겹게 타이핑 해온 포스트 정보 섹션을 자동으로 넣어준다. 아 아름답도다.</p>
+<p>기본적으로 제공해주는 스니펫도 상당히 많다. 이는 커맨드 팔레트에서 알아서 검색해보도록. 각 언어별로 작성된 스니펫 파일은 <a href="https://github.com/atom" target="_blank" rel="noopener">아톰 Github</a>에서 확인할 수 있다. 여기 html 스니펫 파일을 <a href="https://github.com/atom/language-html/blob/master/snippets/language-html.cson" target="_blank" rel="noopener">링크</a>해둔다. 어떻게 스니펫을 작성하고 관리해야할지 감이 올 것이다.</p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>스니펫 내용뿐만 아니라 아톰의 기능도 틈틈히 설명하다보니 글이 길어졌지만 스니펫의 작성과 사용법은 무척 간단하다. 계속적으로 반복하는 코드나 문구가 있다면 조금 시간을 내서 스니펫을 작성하자. 스니펫은 의미없는 타이핑을 해야만 했던 당신의 손가락에 휴식을 가져다 줄 것이다.</p>
+<hr>
+<h4 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h4><ul>
+<li><a href="http://flight-manual.atom.io/using-atom/sections/snippets/" target="_blank" rel="noopener">http://flight-manual.atom.io/using-atom/sections/snippets/</a></li>
+<li><a href="http://www.hongkiat.com/blog/add-custom-code-snippets-atom/" target="_blank" rel="noopener">http://www.hongkiat.com/blog/add-custom-code-snippets-atom/</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#스니펫-설정-파일-열기"><span class="toc-number">1.</span> <span class="toc-text">스니펫 설정 파일 열기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#스니펫의-동작-범위-Scope"><span class="toc-number">2.</span> <span class="toc-text">스니펫의 동작 범위, Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#본격적인-스니펫-작성"><span class="toc-number">3.</span> <span class="toc-text">본격적인 스니펫 작성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#스니펫-사용"><span class="toc-number">4.</span> <span class="toc-text">스니펫 사용</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number">5.</span> <span class="toc-text">마치며</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#참고"><span class="toc-number">5.0.1.</span> <span class="toc-text">참고</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dezang.github.io/create-custom-snippet-in-atom/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dezang.github.io/create-custom-snippet-in-atom/&text=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dezang.github.io/create-custom-snippet-in-atom/&is_video=false&description=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Atom 에디터에서 나만의 Snippet 만들기&body=Check out this article: http://dezang.github.io/create-custom-snippet-in-atom/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dezang.github.io/create-custom-snippet-in-atom/&title=Atom 에디터에서 나만의 Snippet 만들기"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dezang.github.io/create-custom-snippet-in-atom/&name=Atom 에디터에서 나만의 Snippet 만들기&description=&lt;p&gt;오랜 기간동안 Sublime Text(이하 서브라임) 를 사용해오다가 얼마 전부터 Atom(이하 아톰)으로 갈아탔다. VSCode 중에 무엇을 주력 텍스트 에디터로 사용할지 고민하였으나 일단 아톰을 손에 익히기로 결정했다. Github 와의 더 깊은 유대감을 만드고 싶기도 했고 &lt;del&gt;응? 이게 무슨 상관?ㅋㅋㅋ&lt;/del&gt;&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Dezang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/dezang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-102011371-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
